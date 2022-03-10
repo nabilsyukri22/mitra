@@ -8,9 +8,13 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('dashboard.index', [
-            'title' => 'Dasboard'
-        ]);
+        session_start();
+        if (isset($_SESSION['isLogged'])) {
+            return view('dashboard.index', [
+                'title' => 'Dasboard',
+            ]);
+        } else {
+            return redirect('/login');
+        }
     }
-    
 }

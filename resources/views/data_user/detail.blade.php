@@ -21,12 +21,28 @@
                 @include('sb-admin/topbar')
 
                 {{--  Begin Page Content  --}}
-                <div class="container-fluid">
+                <div class="container-fluid rounded-3 ">
 
                     {{--  Page Heading  --}}
 
-                    <p>halaman detail</p>
+                    <h4 class="ml-3">Detail</h4>
+                    <div class="p-4 m-3 border bg-white">
+                        <table class="table table-hover">
+                            <thead>
+                              <tr>
+                                <th scope="col">Nama</th>
+                                <td scope="col">{{ $user->name }}</td>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">Email</th>
+                                <td>{{ $user->email }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
                     
+                    </div>
                     {{--  <a href="{{ route('') }}"></a>  --}}
 
                 </div>

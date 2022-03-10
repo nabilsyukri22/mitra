@@ -4,33 +4,42 @@ namespace App\Http\Controllers;
 
 use App\Models\Mitra;
 use Illuminate\Http\Request;
-use \App\Tables\MitrasTable;
+use Illuminate\Support\Facades\DB;
 
 class DataMitraController extends Controller
 {
     public function index()
     {
-        $mitrastable = (new MitrasTable())->setup();
-
-        return view('data_mitra.index', [
-            'title' => 'Data Mitra',
-            'table' => $mitrastable
-        ]);
-
-        // $table = (new UsersTable())->setup();
-
-        // return view('data_mitra.index', [
-        //     'title' => 'Data Mitra',
-        //     'table' => $table
-        // ]);
+        session_start();
+        if (isset($_SESSION['isLogged'])) {
+            $mitra = Mitra::all();
+            return view('data_mitra.index', [
+                'title' => 'Data Mitra',
+                'mitra' => $mitra,
+            ]);
+        } else {
+            return redirect('/login');
+        }
     }
 
     public function detail($id)
     {
-        // return view('data_mitra.detail');
         $mitra = Mitra::whereId($id)->first();
-        dd($mitra);
+        return view('data_mitra.detail', [
+            'mitra' => $mitra,
+        ]);
+    }
 
-        $mitra->nama;
+    public function edit()
+    {
+        return 'halo';
+    }
+
+    public function delete($id)
+    {
+        DB::table('mitras')
+            ->where('id', $id)
+            ->delete();
+        return redirect('/dashboard');
     }
 }

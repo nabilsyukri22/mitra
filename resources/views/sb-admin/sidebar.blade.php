@@ -18,19 +18,37 @@
             <span>Dashboard</span></a>
     </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider my-0">
+    <hr class="sidebar-divider">
+    <div class="sidebar-heading">
+        User
+    </div>
+    <li class="nav-item">
+        <a class="nav-link" href="/data_user">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Data User</span></a>
+    </li>
 
+    <hr class="sidebar-divider">
+    <div class="sidebar-heading">
+        Mitra
+    </div>
     <li class="nav-item">
         <a class="nav-link" href="/data_mitra">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Data Mitra</span></a>
     </li>
-
-    <!-- Divider -->
+    
     <hr class="sidebar-divider">
+    <div class="sidebar-heading">
+        Sensus / Survei
+    </div>
+    <li class="nav-item">
+        <a class="nav-link" href="/data_survei">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Data Survei</span></a>
+    </li>
 
-    <!-- Heading -->
+    {{--  <hr class="sidebar-divider">
     <div class="sidebar-heading">
         Interface
     </div>
@@ -66,7 +84,7 @@
                 <a class="collapse-item" href="utilities-border.html">Admin Aktif</a>
             </div>
         </div>
-    </li>
+    </li>  --}}
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

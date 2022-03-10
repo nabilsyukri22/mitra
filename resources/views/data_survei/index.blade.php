@@ -23,13 +23,16 @@
                 {{--  Begin Page Content  --}}
                 <div class="container-fluid">
 
-                    {{--  <a href="/data_survei/survei" class="btn btn-primary mb-5">Buat Survei / Sensus Baru</a>  --}}
+                    {{--  Page Heading  --}}
 
-                    <table id="data_user">
+                    <a href="/data_survei/survei" class="btn btn-primary mb-5">Buat Survei / Sensus Baru</a>
+
+                    <table id="data_survei">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Nama</th>
+                                <th>Nomor WA</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -37,24 +40,24 @@
                           @php
                               $i = 1;
                           @endphp
-                          @foreach ($user as $item)
+                          @foreach ($survei as $item)
                             <tr>
                                 <td><?= $i++ ?></td>
-                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->nama }}</td>
+                                <td>{{ $item->kebutuhan }}</td>
                                 <td>
-                                  {{--  <a href="/detail_survei/{{ $item['id'] }}" class="btn btn-sm btn-primary"><i class="fa fa-info"></i></a>
+                                  <a href="/detail_survei/{{ $item['id'] }}" class="btn btn-sm btn-primary"><i class="fa fa-info"></i></a>
                                   <form action="/data_survei/delete/{{ $item->id }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin?')">
                                     @csrf
                                     <button class="btn btn-danger btn-sm">
                                       <i class="fa fa-trash"></i>
                                     </button>
-                                  </form>  --}}
+                                  </form>
                                 </td>
                               </tr>
                               @endforeach
                         </tbody>
                       </table>
-
                 </div>
 
             </div>
@@ -76,7 +79,7 @@
     @include('sb-admin/javascript')
     <script>
         $(document).ready( function () {
-          $('#data_user').DataTable();
+          $('#data_survei').DataTable();
         } );
     </script>
 </body>

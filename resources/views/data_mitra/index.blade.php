@@ -23,15 +23,39 @@
                 {{--  Begin Page Content  --}}
                 <div class="container-fluid">
 
-                    {{--  Page Heading  --}}
-                    <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
-
-                    {{ $table }}
-                    
-                    {{--  <a href="{{ route('') }}"></a>  --}}
-
+                  <table id="data_mitra">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Nomor WA</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      @php
+                          $i = 1;
+                      @endphp
+                      @foreach ($mitra as $item)
+                        <tr>
+                            <td><?= $i++ ?></td>
+                            <td>{{ $item['nama'] }}</td>
+                            <td>{{ $item['nowa'] }}</td>
+                            <td>
+                              <a href="/detail_mitra/{{ $item['id'] }}" class="btn btn-sm btn-primary"><i class="fa fa-info"></i></a>
+                              <form action="/data_mitra/delete/{{ $item->id }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin?')">
+                                @csrf
+                                <button class="btn btn-danger btn-sm">
+                                  <i class="fa fa-trash"></i>
+                                </button>
+                              </form>
+                            </td>
+                          </tr>
+                          @endforeach
+                    </tbody>
+                  </table>
                 </div>
-
+                  
             </div>
 
             {{--  Footer  --}}
@@ -49,7 +73,11 @@
 
     {{--  JS  --}}
     @include('sb-admin/javascript')
-
+  <script>
+    $(document).ready( function () {
+      $('#data_mitra').DataTable();
+    } );
+  </script>
 </body>
 
 </html>

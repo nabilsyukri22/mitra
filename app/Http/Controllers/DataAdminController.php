@@ -10,12 +10,17 @@ class DataAdminController extends Controller
 {
     public function index()
     {
-        $table = (new UsersTable())->setup();
-
-        return view('data_mitra.index', [
-            'title' => 'Data Mitra',
-            'table' => $table
-        ]);
+        session_start();
+        if (isset($_SESSION['isLogged'])) {
+            $table = (new UsersTable())->setup();
+            return view('data_mitra.index', [
+                'title' => 'Data Mitra',
+                'table' => $table
+             ]);
+        } else {
+            return redirect('/login');
+        }
+        
     }
 
     public function detail($id)

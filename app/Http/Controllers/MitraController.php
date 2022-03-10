@@ -18,8 +18,6 @@ class MitraController extends Controller
 
     public function store(Request $request)
     {
-        // ddd($request);
-
         $validatedData = $request->validate([
             'nama' => 'required|max:255',
             'jk' => 'required|max:255',
@@ -45,15 +43,11 @@ class MitraController extends Controller
             'ijazah' => 'image|file|max:2048',
         ]);
 
-        $validatedData['image'] = $request->file('pasfoto')->store('pasfoto');
-        $validatedData['image'] = $request->file('ktp')->store('ktp');
-        $validatedData['image'] = $request->file('ijazah')->store('ijazah');
-
+        $validatedData['pasfoto'] = $request->file('pasfoto')->store('pasfoto');
+        $validatedData['ktp'] = $request->file('ktp')->store('ktp');
+        $validatedData['ijazah'] = $request->file('ijazah')->store('ijazah');
         Mitra::create($validatedData);
-
         // $request->session()->flash('success', 'Registrasi Berhasil');
-
-        dd($request);
         return redirect('/blank')->with('success', 'Pendaftaran Berhasil');
     }
 }

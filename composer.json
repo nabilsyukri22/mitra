@@ -11,7 +11,8 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "okipa/laravel-table": "^4.0"
+        "okipa/laravel-table": "^4.0",
+        "twilio/sdk": "^6.35"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
