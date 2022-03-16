@@ -16,6 +16,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ url('vendor/sb-admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ url('vendor/sb-admin/css/rating.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
     

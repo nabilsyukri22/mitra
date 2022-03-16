@@ -32,7 +32,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama</th>
-                                <th>Nomor WA</th>
+                                <th>Kebutuhan</th>
                                 <th>Action</th>
                             </tr>
                         </thead>

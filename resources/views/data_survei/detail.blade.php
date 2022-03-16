@@ -38,22 +38,27 @@
                               </tr>
                               <tr>
                                 <th scope="col">Status</th>
-                                <td scope="col">
-                                  {{--  <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                      {{ $survei->status }}
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                      <li><a class="dropdown-item" href="#">Belum Dimulai</a></li>
-                                      <li><a class="dropdown-item" href="#">Sedang Berlangsung</a></li>
-                                      <li><a class="dropdown-item" href="#">Selesai</a></li>
-                                    </ul>
-                                  </div>  --}}
+                                {{--  <td scope="col">
                                     <select class="form-select" name="status" id="status">
                                       <option value="Belum Dimulai">Belum Dimulai</option>
                                       <option value="Sedang Berlangsung">Sedang Berlangsung</option>
                                       <option value="Selesai">Selesai</option>
                                     </select>
+                                </td>  --}}
+                                <td scope="col">
+                                  @php
+                                    $date = date('Y-m-d');
+                                    if($date < $survei->tgl_mulai)
+                                    {
+                                      echo "Belum Dimulai";
+                                    } else if($date >= $survei->tgl_mulai && $date <= $survei->tgl_akhir)
+                                    {
+                                      echo "Sedang Berlangsung";
+                                    } else 
+                                    {
+                                      echo "Telah Selesai";
+                                    }
+                                  @endphp
                                 </td>
                               </tr>
                               
@@ -69,7 +74,17 @@
                       <table class="table table-striped table-hover">
                         <tr>
                           <th scope="col">Nama Mitra</th>
-                          <th scope="col">Action</th>
+                          <th scope="col">
+                            @php
+                                  if($date > $survei->tgl_akhir)
+                                  {
+                                    echo "Rating";
+                                  } else 
+                                  {
+                                    echo "Action";
+                                  }
+                            @endphp
+                          </th>
                           
                         </tr>
                         @foreach ($mitra as $m)
@@ -78,7 +93,27 @@
                               {{ $m->nama }}
                             </td>
                             <td scope="col">
-                              <a href="#">delete</a>
+                              @php
+                                  if($date > $survei->tgl_akhir)
+                                  {
+                                    echo '
+                                    <fieldset class="rating">
+                                      <input type="radio" id="field'.$m->id.'_star5" name="rating'.$m->id.'" value="5" /><label class = "full" for="field'.$m->id.'_star5"></label>
+                                      
+                                      <input type="radio" id="field'.$m->id.'_star4" name="rating'.$m->id.'" value="4" /><label class = "full" for="field'.$m->id.'_star4"></label>
+                                      
+                                      <input type="radio" id="field'.$m->id.'_star3" name="rating'.$m->id.'" value="3" /><label class = "full" for="field'.$m->id.'_star3"></label>
+                                      
+                                      <input type="radio" id="field'.$m->id.'_star2" name="rating'.$m->id.'" value="2" /><label class = "full" for="field'.$m->id.'_star2"></label>
+                                      
+                                      <input type="radio" id="field'.$m->id.'_star1" name="rating'.$m->id.'" value="1" /><label class = "full" for="field'.$m->id.'_star1"></label>
+                                      
+                                    </fieldset>';
+                                  } else 
+                                  {
+                                    echo "<a href='#'> Delete </a>";
+                                  }
+                              @endphp
                             </td>
                           </tr>
                         @endforeach

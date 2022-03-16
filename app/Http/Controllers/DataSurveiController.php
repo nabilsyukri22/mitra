@@ -6,6 +6,7 @@ use App\Models\Mitra;
 use App\Models\Survei;
 use App\Models\MitraSurvei;
 use Illuminate\Http\Request;
+use App\Models\StatusSurvei;
 use Illuminate\Support\Facades\Hash;
 
 class DataSurveiController extends Controller
@@ -67,11 +68,13 @@ class DataSurveiController extends Controller
             ->where('mitra_surveis.id_survei', $id)
             ->get();
 
+        $status_survei = StatusSurvei::all();
         $survei = Survei::whereId($id)->first();
         return view('data_survei.detail', [
             'survei' => $survei,
             'jumlahmitra' => $jumlahmitra,
             'mitra' => $mitra,
+            'status_survei' => $status_survei,
         ]);
     }
 
