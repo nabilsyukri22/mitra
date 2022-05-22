@@ -26,6 +26,24 @@
                     {{-- Page Heading --}}
 
                     <h4 class="ml-3">Detail</h4>
+                    <button onclick="
+                        use Twilio\Rest\Client;
+                        
+                        $sid = 'AC9e392a7b4a308ada52e7c81861c35c15';
+                        $token = '8e1d81e5e76e558f0f5bf87e75f1f9bb';
+                        $twilio = new Client($sid, $token);
+                        
+                        $message = $twilio->messages->create(
+                            'whatsapp:+6281266075794', // to
+                            [
+                                'from' => 'whatsapp:+14155238886',
+                                'body' => 'Bismillah',
+                            ],
+                        );
+                        
+                        print $message->sid;
+                    ">halo</button>
+                    <a href="/data_survei/twilio">kirim wa</a>
                     <div class="p-4 m-3 border bg-white">
                         <table class="table table-striped table-hover">
                             <tr>
@@ -34,7 +52,7 @@
                             </tr>
                             <tr>
                                 <th scope="col">Kebutuhan</th>
-                                <td scope="col">{{ $jumlahmitra->jumlah }}/{{ $survei->kebutuhan }}</td>
+                                <td scope="col">{{ $jumlahmitra }}/{{ $survei->kebutuhan }}</td>
                             </tr>
                             <tr>
                                 <th scope="col">Status</th>
@@ -67,72 +85,54 @@
                         <div>
                             <h4 class="ml-3">Mitra Terhubung</h4>
                         </div>
-                        <div class="mr-5"><a href="/data_survei/tambah" class="btn btn-primary">Tambah Mitra</a>
-                        </div>
+                        {{-- <div class="mr-5"><a href="/data_survei/tambah" class="btn btn-primary">Tambah Mitra</a> --}}
                     </div>
-                    <div class="p-4 m-3 border bg-white">
-                        <table class="table table-striped table-hover">
-                            <tr>
-                                <th scope="col">Nama Mitra</th>
-                                <th scope="col">
-                                    @php
-                                        if ($date > $survei->tgl_akhir) {
-                                            echo 'Rating';
-                                        } else {
-                                            echo 'Action';
-                                        }
-                                    @endphp
-                                </th>
-
-                            </tr>
-                            @foreach ($mitra as $m)
-                                <tr>
-                                    <td scope="col">
-                                        {{ $m->nama }}
-                                    </td>
-                                    <td scope="col">
-                                        {{-- @livewire('rating') --}}
-                                        @livewire('penilaian', ['mitra' => $m, 'survei' => $survei], key($m))
-                                        {{-- @if ($date > $survei->tgl_akhir)
-                                            <fieldset class="rating">
-                                                <input type="radio" id="field'.$m->id.'_star5" name="rating'.$m->id.'"
-                                                    value="5" /><label class="full"
-                                                    for="field'.$m->id.'_star5"></label>
-
-                                                <input type="radio" id="field'.$m->id.'_star4" name="rating'.$m->id.'"
-                                                    value="4" /><label class="full"
-                                                    for="field'.$m->id.'_star4"></label>
-
-                                                <input type="radio" id="field'.$m->id.'_star3" name="rating'.$m->id.'"
-                                                    value="3" /><label class="full"
-                                                    for="field'.$m->id.'_star3"></label>
-
-                                                <input type="radio" id="field'.$m->id.'_star2" name="rating'.$m->id.'"
-                                                    value="2" /><label class="full"
-                                                    for="field'.$m->id.'_star2"></label>
-
-                                                <input type="radio" id="field'.$m->id.'_star1" name="rating'.$m->id.'"
-                                                    value="1" /><label class="full"
-                                                    for="field'.$m->id.'_star1"></label>
-                                            </fieldset>
-                                        @else
-                                            <a href='#'> Delete </a>
-                                        @endif --}}
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </table>
-                    </div>
-                    {{-- <a href="{{ route('') }}"></a> --}}
-
                 </div>
+                <div class="p-4 m-3 border bg-white">
+                    <table class="table table-striped table-hover">
+                        <tr>
+                            <th scope="col">Nama Mitra</th>
+                            <th scope="col">Beri Penilaian</th>
+                            @if ($date > $survei->tgl_akhir)
+                            @endif
+                            <th scope="col">Nilai Kinerja</th>
+                        </tr>
+                        @foreach ($mitra as $m)
+                            @php
+                                $mitraSurvei = $m
+                                    ->mitra_survei()
+                                    ->where('id_survei', $survei->id)
+                                    ->first();
+                                $penilaians = $mitraSurvei->penilaians;
+                                $avg = $penilaians->avg('nilai');
+                            @endphp
+                            <tr>
+                                <td scope="col">
+                                    {{ $m->nama }}
+                                </td>
+                                <td scope="col">
+                                    <a href="/data_survei/penilaian/{{ $mitraSurvei->id }}"
+                                        class="btn btn-sm btn-primary"><i class="fa fa-info"></i></a>
+                                </td>
+                                @if ($date > $survei->tgl_akhir)
+                                @endif
+                                <td scope="col">
+                                    {{ $avg }}
+                                </td>
+                            </tr>
+                        @endforeach
+                    </table>
+                </div>
+                {{-- <a href="{{ route('') }}"></a> --}}
 
             </div>
 
-            {{-- Footer --}}
-            @include('sb-admin/footer')
-
         </div>
+
+        {{-- Footer --}}
+        @include('sb-admin/footer')
+
+    </div>
 
     </div>
 

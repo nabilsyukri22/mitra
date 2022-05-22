@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 
-{{--  head  --}}
+{{-- head --}}
 @include('sb-admin/head')
 
 <body id="page-top">
 
     <div id="wrapper">
 
-        {{--  Sidebar  --}}
+        {{-- Sidebar --}}
         @include('sb-admin/sidebar')
 
-        {{--  Content Wrapper  --}}
+        {{-- Content Wrapper --}}
         <div id="content-wrapper" class="d-flex flex-column">
 
-            {{--  Main Content  --}}
+            {{-- Main Content --}}
             <div id="content">
 
-                {{--  Topbar  --}}
+                {{-- Topbar --}}
                 @include('sb-admin/topbar')
 
-                {{--  Begin Page Content  --}}
+                {{-- Begin Page Content --}}
                 <div class="container-fluid">
 
-                    {{--  Page Heading  --}}
+                    {{-- Page Heading --}}
 
                     <a href="/data_survei/survei" class="btn btn-primary mb-5">Buat Survei / Sensus Baru</a>
 
@@ -33,54 +33,61 @@
                                 <th>No</th>
                                 <th>Nama</th>
                                 <th>Kebutuhan</th>
-                                <th>Action</th>
+                                <th>Tanggal Dimulai</th>
+                                <th>Tanggal Berakhir</th>
+                                <th>Detail</th>
                             </tr>
                         </thead>
                         <tbody>
-                          @php
-                              $i = 1;
-                          @endphp
-                          @foreach ($survei as $item)
-                            <tr>
-                                <td><?= $i++ ?></td>
-                                <td>{{ $item->nama }}</td>
-                                <td>{{ $item->kebutuhan }}</td>
-                                <td>
-                                  <a href="/detail_survei/{{ $item['id'] }}" class="btn btn-sm btn-primary"><i class="fa fa-info"></i></a>
-                                  <form action="/data_survei/delete/{{ $item->id }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin?')">
-                                    @csrf
-                                    <button class="btn btn-danger btn-sm">
-                                      <i class="fa fa-trash"></i>
-                                    </button>
-                                  </form>
-                                </td>
-                              </tr>
-                              @endforeach
+                            @php
+                                $i = 1;
+                            @endphp
+                            @foreach ($survei as $item)
+                                <tr>
+                                    <td>{{ $i++ }}</td>
+                                    <td>{{ $item->nama }}</td>
+                                    <td>{{ $item->kebutuhan }}</td>
+                                    <td>{{ $item->tgl_mulai }}</td>
+                                    <td>{{ $item->tgl_akhir }}</td>
+                                    <td>
+                                        <a href="/detail_survei/{{ $item['id'] }}" class="btn btn-sm btn-primary"><i
+                                                class="fa fa-info"></i></a>
+                                        {{-- <form action="/data_survei/delete/{{ $item->id }}" method="POST"
+                                            class="d-inline" onsubmit="return confirm('Yakin?')">
+                                            @csrf
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </form> --}}
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
-                      </table>
+                    </table>
                 </div>
 
             </div>
 
-            {{--  Footer  --}}
+            {{-- Footer --}}
             @include('sb-admin/footer')
 
         </div>
 
     </div>
 
-    {{--  Scroll to Top Button  --}}
+    {{-- Scroll to Top Button --}}
     @include('sb-admin/button-topbar')
 
     <!-- Logout Modal-->
     @include('sb-admin/logout-modal')
 
-    {{--  JS  --}}
+    {{-- JS --}}
     @include('sb-admin/javascript')
+
     <script>
-        $(document).ready( function () {
-          $('#data_survei').DataTable();
-        } );
+        $(document).ready(function() {
+            $('#data_survei').DataTable();
+        });
     </script>
 </body>
 

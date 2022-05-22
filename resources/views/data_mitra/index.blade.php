@@ -1,83 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 
-{{--  head  --}}
+{{-- head --}}
 @include('sb-admin/head')
 
 <body id="page-top">
 
     <div id="wrapper">
 
-        {{--  Sidebar  --}}
+        {{-- Sidebar --}}
         @include('sb-admin/sidebar')
 
-        {{--  Content Wrapper  --}}
+        {{-- Content Wrapper --}}
         <div id="content-wrapper" class="d-flex flex-column">
 
-            {{--  Main Content  --}}
+            {{-- Main Content --}}
             <div id="content">
 
-                {{--  Topbar  --}}
+                {{-- Topbar --}}
                 @include('sb-admin/topbar')
 
-                {{--  Begin Page Content  --}}
+                {{-- Begin Page Content --}}
                 <div class="container-fluid">
 
-                  <table id="data_mitra">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama</th>
-                            <th>Nomor WA</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                      @php
-                          $i = 1;
-                      @endphp
-                      @foreach ($mitra as $item)
-                        <tr>
-                            <td><?= $i++ ?></td>
-                            <td>{{ $item['nama'] }}</td>
-                            <td>{{ $item['nowa'] }}</td>
-                            <td>
-                              <a href="/detail_mitra/{{ $item['id'] }}" class="btn btn-sm btn-primary"><i class="fa fa-info"></i></a>
-                              <form action="/data_mitra/delete/{{ $item->id }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin?')">
-                                @csrf
-                                <button class="btn btn-danger btn-sm">
-                                  <i class="fa fa-trash"></i>
-                                </button>
-                              </form>
-                            </td>
-                          </tr>
-                          @endforeach
-                    </tbody>
-                  </table>
+                    <table id="data_mitra">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Rating</th>
+                                <th>Detail</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $i = 1;
+                            @endphp
+                            @foreach ($mitra as $item)
+                                <tr>
+                                    <td><?= $i++ ?></td>
+                                    <td>{{ $item['nama'] }}</td>
+                                    <td>{{ $item->penilaians->avg('nilai') }}</td>
+                                    <td>
+                                        <a href="/detail_mitra/{{ $item['id'] }}" class="btn btn-sm btn-primary"><i
+                                                class="fa fa-info"></i></a>
+                                        {{-- <form action="/data_mitra/delete/{{ $item->id }}" method="POST"
+                                            class="d-inline" onsubmit="return confirm('Yakin?')">
+                                            @csrf
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </form> --}}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
-                  
+
             </div>
 
-            {{--  Footer  --}}
+            {{-- Footer --}}
             @include('sb-admin/footer')
 
         </div>
 
     </div>
 
-    {{--  Scroll to Top Button  --}}
+    {{-- Scroll to Top Button --}}
     @include('sb-admin/button-topbar')
 
     <!-- Logout Modal-->
     @include('sb-admin/logout-modal')
 
-    {{--  JS  --}}
+    {{-- JS --}}
     @include('sb-admin/javascript')
-  <script>
-    $(document).ready( function () {
-      $('#data_mitra').DataTable();
-    } );
-  </script>
+    <script>
+        $(document).ready(function() {
+            $('#data_mitra').DataTable();
+        });
+    </script>
 </body>
 
 </html>

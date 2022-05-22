@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataAdminController;
 use App\Http\Controllers\DataMitraController;
 use App\Http\Controllers\DataSurveiController;
+use App\Http\Controllers\IndoregionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,7 @@ use App\Http\Controllers\DataSurveiController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
 Route::get('/blank', function () {
@@ -68,6 +69,14 @@ Route::post('/data_survei/tambah_mitra', [
     'tambah_mitra',
 ]);
 
+Route::get('/data_survei/twilio', [DataSurveiController::class, 'twilio']);
+
+Route::get('/data_survei/penilaian/{id}', [
+    DataSurveiController::class,
+    'penilaian',
+]);
+Route::post('/data_survei/penilaian', [DataSurveiController::class, 'simpan']);
+
 Route::get('/data_mitra/edit/{id}', [DataMitraController::class], 'edit');
 
 Route::get('/data_user', [DataUserController::class, 'index'])->name(
@@ -103,3 +112,47 @@ Route::get('/profile', function () {
 });
 
 Route::post('data_mitra/delete/{id}', [DataMitraController::class, 'delete']);
+
+//----------------
+
+Route::get('/indoregion', [IndoregionController::class, 'indoregion'])->name(
+    'indoregion'
+);
+
+Route::post('/getkabupaten', [
+    IndoregionController::class,
+    'getkabupaten'
+])->name('getkabupaten');
+
+Route::post('/getkecamatan', [
+    IndoregionController::class,
+    'getkecamatan'
+])->name('getkecamatan');
+
+Route::post('/getdesa', [
+    IndoregionController::class,
+    'getdesa'
+])->name('getdesa');
+
+Route::post('/indoregion', [IndoRegionController::class, 'store']);
+
+//----------------------
+
+Route::get('/indoregion', [MitraController::class, 'indoregion'])->name(
+    'indoregion'
+);
+
+Route::post('/getkabupaten', [
+    MitraController::class,
+    'getkabupaten'
+])->name('getkabupaten');
+
+Route::post('/getkecamatan', [
+    MitraController::class,
+    'getkecamatan'
+])->name('getkecamatan');
+
+Route::post('/getdesa', [
+    MitraController::class,
+    'getdesa'
+])->name('getdesa');

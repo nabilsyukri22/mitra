@@ -1,11 +1,13 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+        <img class="user" src="https://www.bps.go.id/website/fileMenu/logo.png;wafc244cc303b5aff3"
+            height="50px" width="50px">
+        {{-- <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div> --}}
     </a>
 
     <!-- Divider -->
@@ -18,7 +20,7 @@
             <span>Dashboard</span></a>
     </li>
 
-    <hr class="sidebar-divider">
+    {{-- <hr class="sidebar-divider">
     <div class="sidebar-heading">
         User
     </div>
@@ -26,7 +28,7 @@
         <a class="nav-link" href="/data_user">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Data User</span></a>
-    </li>
+    </li> --}}
 
     <hr class="sidebar-divider">
     <div class="sidebar-heading">
@@ -37,7 +39,7 @@
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Data Mitra</span></a>
     </li>
-    
+
     <hr class="sidebar-divider">
     <div class="sidebar-heading">
         Sensus / Survei
@@ -48,7 +50,7 @@
             <span>Data Survei</span></a>
     </li>
 
-    {{--  <hr class="sidebar-divider">
+    {{-- <hr class="sidebar-divider">
     <div class="sidebar-heading">
         Interface
     </div>
@@ -84,7 +86,7 @@
                 <a class="collapse-item" href="utilities-border.html">Admin Aktif</a>
             </div>
         </div>
-    </li>  --}}
+    </li> --}}
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
