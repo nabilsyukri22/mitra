@@ -26,13 +26,13 @@
                     {{-- Page Heading --}}
 
                     <h4 class="ml-3">Detail</h4>
-                    <button onclick="
+                    <!-- <button onclick="
                         use Twilio\Rest\Client;
-                        
+
                         $sid = 'AC9e392a7b4a308ada52e7c81861c35c15';
                         $token = '8e1d81e5e76e558f0f5bf87e75f1f9bb';
                         $twilio = new Client($sid, $token);
-                        
+
                         $message = $twilio->messages->create(
                             'whatsapp:+6281266075794', // to
                             [
@@ -40,10 +40,24 @@
                                 'body' => 'Bismillah',
                             ],
                         );
-                        
+
                         print $message->sid;
-                    ">halo</button>
-                    <a href="/data_survei/twilio">kirim wa</a>
+                    ">halo</button> -->
+                    <form action="/data_survei/twilio" method="POST">
+                        @csrf
+
+                        <input type="hidden" id="surveiId" name="surveiId" value="{{ $survei->id }}" />
+                        <div class="row mb-4 g-3 align-items-center">
+                            <div class="col-2">
+                                <label for="nama" class="col-form-label">Pesan</label>
+                            </div>
+                            <div class="col-8">
+                                <textarea id="msg" name="msg" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Kirim</button>
+                    </form>
+                    <!-- <a href="/data_survei/twilio">kirim wa</a> -->
                     <div class="p-4 m-3 border bg-white">
                         <table class="table table-striped table-hover">
                             <tr>
@@ -103,8 +117,9 @@
                                     ->mitra_survei()
                                     ->where('id_survei', $survei->id)
                                     ->first();
-                                $penilaians = $mitraSurvei->penilaians;
-                                $avg = $penilaians->avg('nilai');
+                                // $penilaians = $mitraSurvei->penilaians;
+                                // $avg = $penilaians->avg('nilai');
+                                $avg = 0;
                             @endphp
                             <tr>
                                 <td scope="col">

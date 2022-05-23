@@ -29,7 +29,7 @@
                         <h4 class="mb-5">Tambah Survei / Sensus</h4>
                         <form action="/data_survei/store" method="POST" enctype="multipart/form-data">
                           @csrf
-                        
+
                           <div class="row mb-4 g-3 align-items-center">
                             <div class="col-2">
                               <label for="nama" class="col-form-label">Nama</label>
@@ -47,7 +47,7 @@
                               <input type="number" id="kebutuhan" name="kebutuhan" class="form-control">
                             </div>
                           </div>
-                          
+
                           <div class="row g-3 align-items-center">
                             <div class="col-2">
                               <label for="tgl_mulai" class="col-form-label">Tanggal Mulai</label>
@@ -56,7 +56,7 @@
                               <input type="date" name="tgl_mulai" id="tgl_mulai" class="form-control">
                             </div>
                           </div>
-                          
+
                           <div class="row g-3 align-items-center">
                             <div class="col-2">
                               <label for="tgl_akhir" class="col-form-label">Tanggal Berakhir</label>
@@ -65,10 +65,11 @@
                               <input type="date" name="tgl_akhir" id="tgl_akhir" class="form-control">
                             </div>
                           </div>
+                        <input type="hidden" name="status" id="status" value="status">
                         <button type="submit" class="btn btn-primary mt-5">Submit</button>
                         </form>
                     </div>
-                    
+
                     {{--  <a href="{{ route('') }}"></a>  --}}
 
                 </div>

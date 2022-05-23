@@ -31,6 +31,7 @@ class DataSurveiController extends Controller
             'kebutuhan' => 'required|max:255',
             'tgl_mulai' => 'required',
             'tgl_akhir' => 'required',
+            'status'    => 'required',
         ]);
 
         Survei::create($validatedData);
@@ -119,29 +120,30 @@ class DataSurveiController extends Controller
         return redirect('/data_survei');
     }
 
-    public function twilio()
+    public function twilio(Request $request)
     {
+        $validatedData = $request->validate([
+            'surveiId' => 'required',
+            'msg' => 'required|string',
+        ]);
+
+        $survei = Survei::with(['mitras'])->find($validatedData['surveiId']);
+
         $sid = 'AC9e392a7b4a308ada52e7c81861c35c15';
         $token = '8e1d81e5e76e558f0f5bf87e75f1f9bb';
         $twilio = new Client($sid, $token);
 
-        $message = $twilio->messages->create(
-            'whatsapp:+6281266075794', // to
-            [
-                'from' => 'whatsapp:+14155238886',
-                'body' => 'bisa ndak yo',
-            ]
-            // 'whatsapp:+6282391777500',
-            // [
-            //     'from' => 'whatsapp:+14155238886',
-            //     'body' => 'mada dikecekan urangg',
-            // ]
-        );
-        $message = $twilio->messages->create('whatsapp:+6285156817298', [
-            'from' => 'whatsapp:+14155238886',
-            'body' => 'haloo',
-        ]);
+        $message = null;
+        foreach ($survei->mitras as $mitra) {
+            $message = $twilio->messages->create(
+                'whatsapp:'.$mitra->nowa,
+                [
+                    'from' => 'whatsapp:+14155238886',
+                    'body' => $validatedData['msg'],
+                ]
+            );
+        }
 
-        print $message->sid;
+        var_dump($message);
     }
 }

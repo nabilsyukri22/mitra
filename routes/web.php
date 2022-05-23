@@ -69,7 +69,7 @@ Route::post('/data_survei/tambah_mitra', [
     'tambah_mitra',
 ]);
 
-Route::get('/data_survei/twilio', [DataSurveiController::class, 'twilio']);
+Route::post('/data_survei/twilio', [DataSurveiController::class, 'twilio']);
 
 Route::get('/data_survei/penilaian/{id}', [
     DataSurveiController::class,
