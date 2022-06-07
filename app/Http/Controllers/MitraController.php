@@ -82,17 +82,15 @@ class MitraController extends Controller
     public function store(Request $request)
     {
         // dd($request);
-        // $validatedData = $request->validate([
-        $request->validate([
+        $validatedData = $request->validate([
+            // $request->validate([
             'nama' => 'required|max:255',
             'jk' => 'required|max:255',
             'nik' => 'required|max:255',
             'tempat_lahir' => 'required|max:255',
             'tanggal_lahir' => 'required|max:255',
-            'umur' => 'required|max:255',
             'perkawinan' => 'required|max:255',
             'domisili' => 'required|max:255',
-            'kelurahan' => 'required|max:255',
             'pendidikan' => 'required|max:255',
             'nowa' => 'required|max:255',
             'email' => 'required|max:255',
@@ -103,20 +101,25 @@ class MitraController extends Controller
             'ram' => 'required|max:255',
             'android' => 'required|max:255',
             'zoom' => 'required|max:255',
-            'pasfoto' => 'image|file|max:2048',
-            'ktp' => 'image|file|max:2048',
-            'ijazah' => 'image|file|max:2048',
+            'pasfoto' => 'required|image|file|max:2048',
+            'ktp' => 'required|image|file|max:2048',
+            'ijazah' => 'required|image|file|max:2048',
+            'village_id' => 'required',
+            'district_id' => 'required',
+            'regency_id' => 'required',
+            'province_id' => 'required',
+            'g-recaptcha-response' => 'recaptcha',
         ]);
-        dd($request);
+        // dd($request);
 
-        $request['pasfoto']->file('pasfoto')->store('pasfoto');
-        $request['ktp']->file('ktp')->store('ktp');
-        $request['ijazah']->file('ijazah')->store('ijazah');
-        // $validatedData['pasfoto'] = $request->file('pasfoto')->store('pasfoto');
-        // $validatedData['ktp'] = $request->file('ktp')->store('ktp');
-        // $validatedData['ijazah'] = $request->file('ijazah')->store('ijazah');
+        // $request['pasfoto']->file('pasfoto')->store('pasfoto');
+        // $request['ktp']->file('ktp')->store('ktp');
+        // $request['ijazah']->file('ijazah')->store('ijazah');
+        $validatedData['pasfoto'] = $request->file('pasfoto')->store('pasfoto');
+        $validatedData['ktp'] = $request->file('ktp')->store('ktp');
+        $validatedData['ijazah'] = $request->file('ijazah')->store('ijazah');
         // Mitra::create($validatedData);
-        Mitra::create($request);
+        Mitra::create($validatedData);
         // $request->session()->flash('success', 'Registrasi Berhasil');
 
         return redirect('/pendaftaran')->with(

@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-{{-- @include('sb-admin/head') --}}
 
 <head>
     <meta charset="utf-8">
@@ -11,34 +10,34 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link href="{{ url('vendor/sb-admin/css/form.css') }}" rel="stylesheet">
-    {{--  <meta name="csrf-token" content="{{ csrf_token() }}" />  --}}
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"> --}}
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    {!! ReCaptcha::htmlScriptTagJsApi() !!}
+    <style>
+        input[type="date"]{
+            background-color: #5891ff;
+            font-family: "Roboto Mono", monospace;
+            color: #ffffff;
+            border: none;
+            outline: none;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        ::-webkit-calendar-picker-indicator{
+            background-color: #ffffff;
+            cursor: pointer;
+
+        }
+    </style>
 </head>
 
 <body class="text-center">
-    {{-- <div class="dropdown">
-    </div> --}}
-    <div class="row justify-content-center">
+    <div class="" style="display: flex; justify-content: center;">
         <div class="col-md-5">
-
             <main class="registration-form">
-
-                {{-- <span>Domisili :</span>
-                <select name="" id="">
-                    <option value="0" disabled="true" selected="true">-Pilih-</option>
-                    <option value="">Kota Padang Panjang</option>
-                    <option value="">Luar Kota Padang Panjang</option>
-                </select>
-
-                <span>Kecamatan :</span>
-                <select name="" id="">
-                    <option value="0" disabled="true" selected="true">-Pilih-</option>
-                    <option value="">Kota Padang Panjang</option>
-                    <option value="">Luar Kota Padang Panjang</option>
-                </select> --}}
-
-                {{-- {{ $table }} --}}
                 <h1 class="mb-3 mt-3 fw-normal">Silahkan Isi Data Diri Anda</h1>
                 <form action="/mitra" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -46,34 +45,7 @@
                         <span><i class="icon icon-user"></i></span>
                     </div>
 
-                    {{-- ---------------------------- --}}
-
-                    {{-- <div class="form-group">
-                        <label for="provinsi"> Provinsi </label>
-                        <select class="form-control" id="provinsi">
-                            <option>Pilih Provinsi...</option>
-                            @foreach ($provinces as $provinsi)
-                                <option value="{{ $provinsi->id }}"> {{ $provinsi->name }} </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="kabupaten"> Kabupaten / Kota </label>
-                        <select class="form-control" id="kabupaten">
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="kecamatan"> Kecamatan </label>
-                        <select class="form-control" id="kecamatan">
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="desa"> Desa </label>
-                        <select class="form-control" id="desa">
-                        </select>
-                    </div> --}}
-
-                    {{-- ----------------------------- --}}
+                    {{-- 1 --}}
 
                     <div class="form-group">
                         <input type="text" name="nama" class="form-control item @error('nama') is-invalid @enderror"
@@ -85,6 +57,8 @@
                         @enderror
                     </div>
 
+                    {{-- 2 --}}
+
                     <div class="form-group">
                         <input type="text" name="nik" class="form-control item @error('nik') is-invalid @enderror"
                             id="nik" required value="{{ old('nik') }}" placeholder="NIK">
@@ -95,101 +69,7 @@
                         @enderror
                     </div>
 
-                    <div class="form-group">
-
-                        <input type="text" name="tempat_lahir"
-                            class="form-control item @error('tempat_lahir') is-invalid @enderror" id="tempat_lahir"
-                            required value="{{ old('tempat_lahir') }}" placeholder="Tempat Lahir">
-                        @error('tempat_lahir')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-
-                    {{-- <div class="form-group">
-
-                        <input type="text" name="umur" class="form-control item @error('umur') is-invalid @enderror"
-                            id="umur" required value="{{ old('umur') }}" placeholder="Umur">
-                        @error('umur')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div> --}}
-
-
-                    <div class="form-group">
-
-                        <input type="text" name="domisili"
-                            class="form-control item @error('domisili') is-invalid @enderror" id="domisili" required
-                            value="{{ old('domisili') }}" placeholder="Domisili">
-                        @error('domisili')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <input type="text" name="kelurahan"
-                            class="form-control item @error('kelurahan') is-invalid @enderror" id="kelurahan" required
-                            value="{{ old('kelurahan') }}" placeholder="Kelurahan">
-                        @error('kelurahan')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <input type="text" name="pendidikan"
-                            class="form-control item @error('pendidikan') is-invalid @enderror" id="pendidikan" required
-                            value="{{ old('pendidikan') }}" placeholder="Pendidikan">
-                        @error('pendidikan')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-
-                    {{-- <div class="form-group">
-                        <label for="pendidikan">Pendidikan</label>
-                        <select name="pendidikan" id="pendidikan" class="form-control">
-                            <option value="SMP Sederajat">SMP Sederajat</option>
-                            <option value="SMA Sederajat">SMA Sederajat</option>
-                            <option value="S1">S1</option>
-                            <option value="S2">S2</option>
-                        </select>
-                    </div> --}}
-
-                    <div class="form-group">
-
-                        <input type="text" name="nowa" class="form-control item @error('nowa') is-invalid @enderror"
-                            id="nowa" required value="{{ old('nowa') }}" placeholder="Nomor WA">
-                        @error('nowa')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <input type="text" name="email" class="form-control item @error('email') is-invalid @enderror"
-                            id="email" required value="{{ old('email') }}" placeholder="Email">
-                        @error('email')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-
+                    {{-- 3 --}}
 
                     <div class="form-group">
 
@@ -203,117 +83,212 @@
                         @enderror
                     </div>
 
+                    {{-- 4 --}}
 
-                    <div class="row mb-3">
-                        {{-- <label for="pengalaman" class="col-sm-2 col-form-label">Pengalaman</label> --}}
+                    <div class="form-group">
 
-                        <input type="text" name="pengalaman"
-                            class="form-control item @error('pengalaman') is-invalid @enderror" id="pengalaman" required
-                            value="{{ old('pengalaman') }}" placeholder="Pengalaman">
-                        @error('pengalaman')
+                        <input type="text" name="nowa" class="form-control item @error('nowa') is-invalid @enderror"
+                            id="nowa" required value="{{ old('nowa') }}" placeholder="Nomor WA">
+                        @error('nowa')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                         @enderror
                     </div>
 
+                    {{-- 5 --}}
 
+                    <div class="form-group">
 
-                    {{-- <div class="form-floating mb-3">
-                        <input type="text" name="spek" class="form-control @error('spek') is-invalid @enderror" id="spek" required value="{{ old('spek') }}" placeholder="Spek HP">
-                        <label for="spek">Spek</label>
-                        @error('spek')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div> --}}
-
-                    <div class="row mb-3">
-                        {{-- <label for="ram" class="col-sm-2 col-form-label">RAM HP</label> --}}
-
-                        <input type="text" name="ram" class="form-control @error('ram') is-invalid @enderror" id="ram"
-                            required value="{{ old('ram') }}" placeholder="RAM HP">
-                        @error('ram')
+                        <input type="text" name="email" class="form-control item @error('email') is-invalid @enderror"
+                            id="email" required value="{{ old('email') }}" placeholder="Email">
+                        @error('email')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                         @enderror
                     </div>
 
+                    {{-- 6 --}}
 
-                    <div class="row mb-3">
-                        {{-- <label for="android" class="col-sm-2 col-form-label">Android</label> --}}
+                    <div class="form-group">
 
-                        <input type="text" name="android" class="form-control @error('android') is-invalid @enderror"
-                            id="android" required value="{{ old('android') }}" placeholder="Android">
-                        @error('android')
+                        <input type="text" name="tempat_lahir"
+                            class="form-control item @error('tempat_lahir') is-invalid @enderror" id="tempat_lahir"
+                            required value="{{ old('tempat_lahir') }}" placeholder="Tempat Lahir">
+                        @error('tempat_lahir')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                         @enderror
                     </div>
 
+                    {{-- 7 --}}
 
+                    <label for="tanggal_lahir">Tanggal Lahir</label>
                     <br>
-                    <input type="date" name="tanggal_lahir" id="tanggal_lahir">
+                    <input type="date" name="tanggal_lahir" id="tanggal_lahir" required>
                     <br><br>
 
-                    <div class="form-check">
-                        <p>Status Perkawinan</p>
-                        <input class="form-check-input" name="perkawinan" type="radio" value="Menikah" id="menikah"
-                            checked>
-                        <label for="menikah">Menikah</label><br>
-                        <input class="form-check-input" name="perkawinan" type="radio" value="Tidak Menikah"
-                            id="tidak_menikah">
-                        <label for="tidak_menikah">Tidak Menikah</label>
+                    <script type="text/javascript">
+                        $(function() {
+                            $('#datetimepicker1').datetimepicker();
+                        });
+                    </script>
+
+                    {{-- ---------------------------- --}}
+                    <hr>
+
+                    {{-- 8 --}}
+
+                    <div class="form-group">
+                        <label for="provinsi"> Provinsi </label>
+                        <select class="form-control" id="provinsi" name="province_id" required>
+                            <option>Pilih Provinsi...</option>
+                            @foreach ($provinces as $provinsi)
+                                <option value="{{ $provinsi->id }}"> {{ $provinsi->name }} </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    {{-- 9 --}}
+
+                    <div class="form-group">
+                        <label for="kabupaten"> Kabupaten / Kota </label>
+                        <select class="form-control" id="kabupaten" name="regency_id">
+                        </select>
+                    </div>
+
+                    {{-- 10 --}}
+
+                    <div class="form-group">
+                        <label for="kecamatan"> Kecamatan </label>
+                        <select class="form-control" id="kecamatan" name="district_id">
+                        </select>
+                    </div>
+
+                    {{-- 11 --}}
+
+                    <div class="form-group">
+                        <label for="desa"> Nagari </label>
+                        <select class="form-control" id="desa" name="village_id">
+                        </select>
+                    </div>
+
+                    {{-- 12 --}}
+
+                    <div class="form-group">
+                        <input type="text" name="domisili"
+                            class="form-control item @error('domisili') is-invalid @enderror" id="domisili" required
+                            value="{{ old('domisili') }}" placeholder="Alamat Lengkap">
+                        @error('domisili')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    {{-- ----------------------------- --}}
+
+                    <br><hr><br>
+
+                    {{-- 13 --}}
+
+                    <div class="form-group">
+                        <select name="hp" id="hp" class="form-control" required>
+                            <option>Apakah Anda Memiliki HP?</option>
+                            <option value="Punya">Punya</option>
+                            <option value="Tidak Punya">Tidak Punya</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <select name="android" id="android" class="form-control" required>
+                            <option>Versi Android</option>
+                            <option value="5.0 Kebawah">5.0 Kebawah</option>
+                            <option value="Android 5.0 (Lollipop)">Android 5.0 (Lollipop)</option>
+                            <option value="Android 6.0 (Marshmallow)">Android 6.0 (Marshmallow)</option>
+                            <option value="Android 7.0 – 7.1 (Nougat)">Android 7.0 – 7.1 (Nougat)</option>
+                            <option value="Android 8.0 – 8.1 (Oreo)">Android 8.0 – 8.1 (Oreo)</option>
+                            <option value="Android 9 (Pie)">Android 9 (Pie)</option>
+                            <option value="Android 10 (Android Q)">Android 10 (Android Q)</option>
+                            <option value="Android 11">Android 11</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <select name="ram" id="ram" class="form-control" required>
+                            <option>RAM HP</option>
+                            <option value="2 GB">2 GB</option>
+                            <option value="4 GB">4 GB</option>
+                            <option value="6 GB">6 GB</option>
+                            <option value="8 GB">8 GB</option>
+                            <option value="10 GB">10 GB</option>
+                            <option value="Lebih dari 10 GB">Lebih dari 10 GB</option>
+                        </select>
                     </div>
 
                     <br>
+                    <hr><br>
 
-                    <div class="form-check">
-                        <p>Jenis Kelamin</p>
-                        <input class="form-check-input" name="jk" type="radio" value="Pria" id="pria" checked>
-                        <label for="pria">Pria</label><br>
-                        <input class="form-check-input" name="jk" type="radio" value="Wanita" id="wanita">
-                        <label for="wanita">Wanita</label>
+                    <div class="form-group">
+                        <select name="jk" id="jk" class="form-control" required>
+                            <option>Jenis Kelamin</option>
+                            <option value="Pria">Pria</option>
+                            <option value="Wanita">Wanita</option>
+                        </select>
                     </div>
 
-                    <br>
-
-                    <div class="form-check">
-                        <p>Apakah Bisa Menggunakan Zoom?</p>
-                        <input class="form-check-input" name="zoom" type="radio" value="Bisa" id="bisa_zoom"
-                            checked><label for="zoom">Bisa</label><br>
-                        <input class="form-check-input" name="zoom" type="radio" value="Tidak Bisa"
-                            id="tidak_bisa_zoom"><label for="tidak_bisa_zoom">Tidak Bisa</label>
+                    <div class="form-group">
+                        <select name="perkawinan" id="perkawinan" class="form-control" required>
+                            <option>Status Perkawinan</option>
+                            <option value="Belum Kawin">Belum Kawin</option>
+                            <option value="Kawin">Kawin</option>
+                            <option value="Cerai Hidup">Cerai Hidup</option>
+                            <option value="Cerai Mati">Cerai Mati</option>
+                        </select>
                     </div>
 
-                    <br>
-
-                    <div class="form-check">
-                        <p>Bisa bawa motor</p><br>
-                        <input class="form-check-input" name="motor" type="radio" value="Bisa" id="bisa_motor"
-                            checked><label for="menikah">Bisa</label><br>
-                        <input class="form-check-input" name="motor" type="radio" value="Tidak Bisa"
-                            id="tidak_bisa_motor"><label for="tidak_bisa">Tidak Bisa</label>
+                    <div class="form-group">
+                        <select name="pendidikan" id="pendidikan" class="form-control" required>
+                            <option>Pendidikan Terakhir</option>
+                            <option value="SMP Sederajat">SMP Sederajat</option>
+                            <option value="SMA Sederajat">SMA Sederajat</option>
+                            <option value="S1">S1</option>
+                            <option value="S2">S2</option>
+                        </select>
                     </div>
 
-                    <br>
+                    <div class="form-group">
+                        <select name="pengalaman" id="pengalaman" class="form-control" required>
+                            <option>Pengalaman Menjadi Petugas Survei</option>
+                            <option value="Tidak Pernah Ikut Survei Apapun">Tidak Pernah Ikut Survei Apapun</option>
+                            <option value="Pernah Ikut Survei BPS">Pernah Ikut Survei BPS</option>
+                            <option value="Pernah Ikut Survei Selain BPS">Pernah Ikut Survei Selain BPS</option>
+                        </select>
+                    </div>
 
-                    <div class="form-check">
-                        <p>Punya HP</p>
-                        <input class="form-check-input" name="hp" type="radio" value="Punya" id="punya_hp"
-                            checked><label for="punya_hp">Punya</label><br>
-                        <input class="form-check-input" name="hp" type="radio" value="Tidak Punya"
-                            id="tidak_punya_hp"><label for="tidak_punya_hp">Tidak Punya</label>
+                    <div class="form-group">
+                        <select name="zoom" id="zoom" class="form-control" required>
+                            <option>Apakah Bisa Menggunakan Zoom?</option>
+                            <option value="Bisa">Bisa</option>
+                            <option value="Tidak Bisa">Tidak Bisa</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <select name="motor" id="motor" class="form-control" required>
+                            <option>Apakah Bisa Mengendarakan Sepeda Motor?</option>
+                            <option value="Bisa">Bisa</option>
+                            <option value="Tidak Bisa">Tidak Bisa</option>
+                        </select>
                     </div>
 
                     <div class="row mb-3">
                         <label for="pasfoto" class="col-sm-2 col-form-label">Pas Foto</label>
 
                         <input class="form-control @error('pasfoto') is-invalid @enderror" type="file" id="pasfoto"
-                            name="pasfoto">
+                            name="pasfoto" required>
                         @error('pasfoto')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -324,7 +299,8 @@
                     <div class="row mb-3">
                         <label for="ktp" class="col-sm-2 col-form-label">KTP</label>
 
-                        <input class="form-control @error('ktp') is-invalid @enderror" type="file" id="ktp" name="ktp">
+                        <input class="form-control @error('ktp') is-invalid @enderror" type="file" id="ktp" name="ktp"
+                            required>
                         @error('ktp')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -337,7 +313,7 @@
                         <label for="ijazah" class="col-sm-2 col-form-label">Ijazah</label>
 
                         <input class="form-control @error('ijazah') is-invalid @enderror" type="file" id="ijazah"
-                            name="ijazah">
+                            name="ijazah" required>
                         @error('ijazah')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -345,6 +321,12 @@
                         @enderror
                     </div>
 
+                    {!! htmlFormSnippet() !!}
+                    @error('g-recaptcha-response')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
 
                     <div class="form-group">
                         <button class="btn btn-block create-account" type="submit">Register</button>

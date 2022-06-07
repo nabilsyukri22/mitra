@@ -44,24 +44,27 @@ class DataSurveiController extends Controller
 
     public function tambah_mitra(Request $request)
     {
-    }
+        // $mitra = Mitra::all();
+        // $request = $mitra->id;
 
-    public function tambah()
-    {
-        $mitra = Mitra::all();
-        return view('data_survei.tambah_mitra', [
-            'title' => 'Tambah Mitra',
-            'mitra' => $mitra,
+        $insertData = collect($request->tambah_mitra)->map(fn ($item) => [
+            "id_survei" => $request->survei_id,
+            "id_mitra" => $item
         ]);
+
+        MitraSurvei::upsert($insertData->all(), ['id_survei', 'id_mitra']);
+        return redirect()->back();
     }
 
     public function detail($id)
     {
         $survei = Survei::with(['mitras'])->find($id);
+        $mitraa = Mitra::all();
         return view('data_survei.detail', [
             'survei' => $survei,
             'jumlahmitra' => count($survei->mitras),
             'mitra' => $survei->mitras,
+            'mitraa' => $mitraa,
             'status_survei' => StatusSurvei::all(),
         ]);
     }
@@ -117,7 +120,7 @@ class DataSurveiController extends Controller
                 ['nilai' => $nilai]
             );
         }
-        return redirect('/data_survei');
+        return redirect()->route('detail_survei', MitraSurvei::find($request->id_mitra_surveis)->id_survei);
     }
 
     public function twilio(Request $request)
@@ -145,5 +148,12 @@ class DataSurveiController extends Controller
         }
 
         var_dump($message);
+    }
+    public function hapus(Request $request, $id)
+    {
+        $mitraSurvey =  MitraSurvei::find($id);
+        $mitraSurvey->delete();
+
+        return redirect()->back();
     }
 }

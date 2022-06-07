@@ -63,18 +63,17 @@ Route::get('/detail_survei/{id}', [
 
 Route::get('/data_survei/survei', [DataSurveiController::class, 'survei']);
 Route::post('/data_survei/store', [DataSurveiController::class, 'store']);
-Route::get('/data_survei/tambah', [DataSurveiController::class, 'tambah']);
 Route::post('/data_survei/tambah_mitra', [
     DataSurveiController::class,
     'tambah_mitra',
-]);
+])->name('tambah_mitra');
 
 Route::post('/data_survei/twilio', [DataSurveiController::class, 'twilio']);
 
 Route::get('/data_survei/penilaian/{id}', [
     DataSurveiController::class,
     'penilaian',
-]);
+])->name('halaman_penilaian');
 Route::post('/data_survei/penilaian', [DataSurveiController::class, 'simpan']);
 
 Route::get('/data_mitra/edit/{id}', [DataMitraController::class], 'edit');
@@ -82,9 +81,7 @@ Route::get('/data_mitra/edit/{id}', [DataMitraController::class], 'edit');
 Route::get('/data_user', [DataUserController::class, 'index'])->name(
     'data_user'
 );
-Route::get('/detail_user/{id}', [DataUserController::class, 'detail'])->name(
-    'detail_user'
-);
+Route::get('/detail_user/{id}', [DataUserController::class, 'detail'])->name('detail_user');
 
 Route::get('/data_admin', [DataAdminController::class, 'index'])->name(
     'data_admin'
@@ -156,3 +153,7 @@ Route::post('/getdesa', [
     MitraController::class,
     'getdesa'
 ])->name('getdesa');
+
+Route::post('/hapus/mitra_terhubung/{id}',[
+    DataSurveiController::class, 'hapus'
+]);

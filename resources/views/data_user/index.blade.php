@@ -42,13 +42,13 @@
                                 <td><?= $i++ ?></td>
                                 <td>{{ $item->name }}</td>
                                 <td>
-                                  {{--  <a href="/detail_survei/{{ $item['id'] }}" class="btn btn-sm btn-primary"><i class="fa fa-info"></i></a>
+                                  <a href="/detail_survei/{{ $item['id'] }}" class="btn btn-sm btn-primary"><i class="fa fa-info"></i></a>
                                   <form action="/data_survei/delete/{{ $item->id }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin?')">
                                     @csrf
                                     <button class="btn btn-danger btn-sm">
                                       <i class="fa fa-trash"></i>
                                     </button>
-                                  </form>  --}}
+                                  </form>
                                 </td>
                               </tr>
                               @endforeach

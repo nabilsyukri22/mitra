@@ -24,7 +24,23 @@ class Mitra extends Model
         return $this->hasMany(MitraSurvei::class, 'id_mitra'); 
     }
 
+    public function desa(){
+        return $this->hasOne(Village::class, 'village_id');
+    }
+
+    public function kecamatan(){
+        return $this->hasOne(District::class, 'district_id');
+    }
+
+    public function kabupaten(){
+        return $this->hasOne(Regency::class, 'regency_id');
+    }
+
+    public function provinsi(){
+        return $this->hasOne(Province::class, 'province_id');
+    }
+
     // $mitra = Mitra::find(1)
-    // $penilaian = $mitra->penilaians
+    // $penilaian = $mitra->provinsi
     // foreach($penilaian as $p) echo $p->nilai
 }
