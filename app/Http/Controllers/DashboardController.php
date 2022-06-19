@@ -15,17 +15,12 @@ class DashboardController extends Controller
         $user = User::count();
         $survei = Survei::count();
         $mitra = Mitra::count();
-        session_start();
-        if (isset($_SESSION['isLogged'])) {
-            return view('dashboard.index', [
-                'title' => 'Dasboard',
-                'user' => $user,
-                'survei' => $survei,
-                'mitra' => $mitra,
-                'nama' => $nama
-            ]);
-        } else {
-            return redirect('/login');
-        }
+        return view('dashboard.index', [
+            'title' => 'Dasboard',
+            'user' => $user,
+            'survei' => $survei,
+            'mitra' => $mitra,
+            'nama' => $nama,
+        ]);
     }
 }

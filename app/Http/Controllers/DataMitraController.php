@@ -10,16 +10,11 @@ class DataMitraController extends Controller
 {
     public function index()
     {
-        session_start();
-        if (isset($_SESSION['isLogged'])) {
-            $mitra = Mitra::all();
-            return view('data_mitra.index', [
-                'title' => 'Data Mitra',
-                'mitra' => $mitra,
-            ]);
-        } else {
-            return redirect('/login');
-        }
+        $mitra = Mitra::all();
+        return view('data_mitra.index', [
+            'title' => 'Data Mitra',
+            'mitra' => $mitra,
+        ]);
     }
 
     public function detail($id)

@@ -46,11 +46,12 @@ class DataSurveiController extends Controller
     {
         // $mitra = Mitra::all();
         // $request = $mitra->id;
+        $survei = Survei::find($request->survei_id);
 
         $insertData = collect($request->tambah_mitra)->map(fn ($item) => [
             "id_survei" => $request->survei_id,
             "id_mitra" => $item
-        ]);
+        ])->take($survei->kebutuhan);
 
         MitraSurvei::upsert($insertData->all(), ['id_survei', 'id_mitra']);
         return redirect()->back();
@@ -139,7 +140,7 @@ class DataSurveiController extends Controller
         $message = null;
         foreach ($survei->mitras as $mitra) {
             $message = $twilio->messages->create(
-                'whatsapp:'.$mitra->nowa,
+                'whatsapp:' . $mitra->nowa,
                 [
                     'from' => 'whatsapp:+14155238886',
                     'body' => $validatedData['msg'],

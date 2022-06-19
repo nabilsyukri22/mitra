@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Admin
 {
@@ -16,12 +17,7 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!auth()->check()) {
-            abort(403, 'Tidak ada akses');
-        }
-        if (!auth()->user()->isadmin) {
-            abort(403, 'Tidak ada akses');
-        }
+        if (!Auth::user()->isadmin)  return abort(403, 'Tidak ada akses');
         return $next($request);
     }
 }

@@ -132,11 +132,11 @@
                                         </td>
                                     @endif
                                     <td scope="col">
-                                        <form action="/hapus/mitra_terhubung/{{ $mitraSurvei->id }}" method="POST" 
+                                        <form action="/hapus/mitra_terhubung/{{ $mitraSurvei->id }}" method="POST"
                                             class="d-inline" onsubmit="return confirm('Yakin?')">
                                             @csrf
                                             <button class="btn btn-danger btn-sm">
-                                              <i class="fa fa-trash"></i>
+                                                <i class="fa fa-trash"></i>
                                             </button>
                                         </form>
                                     </td>
@@ -146,19 +146,21 @@
                     </div>
                     {{-- <a href="{{ route('') }}"></a> --}}
 
-                    <form action="/data_survei/twilio" method="POST">
-                        @csrf
-                        <input type="hidden" id="surveiId" name="surveiId" value="{{ $survei->id }}" />
-                        <div class="row mb-4 g-3 align-items-center">
-                            <div class="col-2">
-                                <label for="nama" class="col-form-label">Pesan</label>
+                    <div class="p-4 m-3 border bg-white">
+                        <form action="/data_survei/twilio" method="POST">
+                            @csrf
+                            <input type="hidden" id="surveiId" name="surveiId" value="{{ $survei->id }}" />
+                            <div class="row mb-4 g-3 align-items-center">
+                                <div class="col-2">
+                                    <label for="nama" class="col-form-label">Pesan</label>
+                                </div>
+                                <div class="col-8">
+                                    <textarea id="msg" name="msg" class="form-control"></textarea>
+                                </div>
                             </div>
-                            <div class="col-8">
-                                <textarea id="msg" name="msg" class="form-control"></textarea>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Kirim</button>
-                    </form>
+                            <button type="submit" class="btn btn-primary">Kirim</button>
+                        </form>
+                    </div>
 
                 </div>
             </div>

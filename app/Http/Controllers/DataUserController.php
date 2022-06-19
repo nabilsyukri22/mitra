@@ -9,16 +9,11 @@ class DataUserController extends Controller
 {
     public function index()
     {
-        session_start();
-        if (isset($_SESSION['isLogged'])) {
-            $user = User::all();
-            return view('data_user.index', [
-                'title' => 'User',
-                'user' => $user,
-            ]);
-        } else {
-            return redirect('/login');
-        }
+        $user = User::all();
+        return view('data_user.index', [
+            'title' => 'User',
+            'user' => $user,
+        ]);
     }
 
     public function tambah()

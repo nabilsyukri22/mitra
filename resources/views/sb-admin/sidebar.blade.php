@@ -2,8 +2,8 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
-        <img class="user" src="https://www.bps.go.id/website/fileMenu/logo.png;wafc244cc303b5aff3"
-            height="50px" width="50px">
+        <img class="user" src="https://www.bps.go.id/website/fileMenu/logo.png;wafc244cc303b5aff3" height="50px"
+            width="50px">
         {{-- <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
@@ -15,7 +15,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
-        <a class="nav-link" href="/dashboard">
+        <a class="nav-link active" href="/dashboard">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -30,7 +30,8 @@
             <span>Data User</span></a>
     </li> --}}
 
-    @if (auth()->user()->isadmin == true)
+
+    @if (auth()->user()->isadmin)
         <hr class="sidebar-divider">
         <div class="sidebar-heading">
             Data User

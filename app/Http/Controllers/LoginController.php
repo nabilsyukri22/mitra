@@ -11,14 +11,8 @@ class LoginController extends Controller
 {
     public function index()
     {
-        session_start();
-        if (isset($_SESSION['isLogged'])) {
-            return redirect('/dashboard');
-        } else {
-            return view('login.index', [
-                'title' => 'Login',
-            ]);
-        }
+        if (Auth::check()) return redirect('/dashboard');
+        return view('login.index', ['title' => 'Login']);
     }
 
     public function authenticate(Request $request)
@@ -30,9 +24,6 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             // dd($request->session()->regenerate());
-            // Session::set('isLogged', true);
-            session_start();
-            $_SESSION['isLogged'] = true;
             $request->session()->regenerate();
             // if (auth()->user()->isadmin == true){
             //     return redirect()->route('admin');
