@@ -30,7 +30,7 @@ class RegisterController extends Controller
 
         // $request->session()->flash('success', 'Registrasi Berhasil');
 
-        return redirect('/login')->with('success', 'Registrasi Berhasil');
+        return redirect('/data_user');
         // dd('berhasil');
     }
 }

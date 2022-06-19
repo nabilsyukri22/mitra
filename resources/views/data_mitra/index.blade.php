@@ -29,7 +29,7 @@
                                 <th>No</th>
                                 <th>Nama</th>
                                 <th>Rating</th>
-                                <th>Detail</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,13 +44,15 @@
                                     <td>
                                         <a href="/detail_mitra/{{ $item['id'] }}" class="btn btn-sm btn-primary"><i
                                                 class="fa fa-info"></i></a>
-                                        {{-- <form action="/data_mitra/delete/{{ $item->id }}" method="POST"
-                                            class="d-inline" onsubmit="return confirm('Yakin?')">
-                                            @csrf
-                                            <button class="btn btn-danger btn-sm">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </form> --}}
+                                        @if (auth()->user()->isadmin == true)
+                                            <form action="/data_mitra/delete/{{ $item->id }}" method="POST"
+                                                class="d-inline" onsubmit="return confirm('Yakin?')">
+                                                @csrf
+                                                <button class="btn btn-danger btn-sm">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

@@ -40,6 +40,6 @@ class DataMitraController extends Controller
         DB::table('mitras')
             ->where('id', $id)
             ->delete();
-        return redirect('/dashboard');
+        return redirect()->back();
     }
 }

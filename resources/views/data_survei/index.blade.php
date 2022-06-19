@@ -25,7 +25,7 @@
 
                     {{-- Page Heading --}}
 
-                    <a href="/data_survei/survei" class="btn btn-primary mb-5">Buat Survei / Sensus Baru</a>
+                    <a href="/data_survei/tambah" class="btn btn-primary mb-5">Buat Survei / Sensus Baru</a>
 
                     <table id="data_survei">
                         <thead>
@@ -35,7 +35,7 @@
                                 <th>Kebutuhan</th>
                                 <th>Tanggal Dimulai</th>
                                 <th>Tanggal Berakhir</th>
-                                <th>Detail</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -52,13 +52,15 @@
                                     <td>
                                         <a href="/detail_survei/{{ $item['id'] }}" class="btn btn-sm btn-primary"><i
                                                 class="fa fa-info"></i></a>
-                                        {{-- <form action="/data_survei/delete/{{ $item->id }}" method="POST"
-                                            class="d-inline" onsubmit="return confirm('Yakin?')">
-                                            @csrf
-                                            <button class="btn btn-danger btn-sm">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </form> --}}
+                                        @if (auth()->user()->isadmin == true)
+                                            <form action="/data_survei/delete/{{ $item->id }}" method="POST"
+                                                class="d-inline" onsubmit="return confirm('Yakin?')">
+                                                @csrf
+                                                <button class="btn btn-danger btn-sm">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

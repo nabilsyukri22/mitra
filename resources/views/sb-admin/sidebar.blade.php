@@ -30,6 +30,18 @@
             <span>Data User</span></a>
     </li> --}}
 
+    @if (auth()->user()->isadmin == true)
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+            Data User
+        </div>
+        <li class="nav-item">
+            <a class="nav-link" href="/data_user">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Data User</span></a>
+        </li>
+    @endif
+
     <hr class="sidebar-divider">
     <div class="sidebar-heading">
         Mitra

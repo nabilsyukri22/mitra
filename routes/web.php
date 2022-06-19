@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MitraController;
 use App\Http\Controllers\DataUserController;
@@ -29,6 +31,8 @@ Route::get('/', function () {
 Route::get('/blank', function () {
     return view('sb-admin/app');
 });
+
+Route::get('/admin', [AdminController::class], 'index')->name('admin')->middleware('admin');
 
 Route::get('/logout', [LoginController::class, 'logout']);
 
@@ -61,7 +65,7 @@ Route::get('/detail_survei/{id}', [
     'detail',
 ])->name('detail_survei');
 
-Route::get('/data_survei/survei', [DataSurveiController::class, 'survei']);
+Route::get('/data_survei/tambah', [DataSurveiController::class, 'survei']);
 Route::post('/data_survei/store', [DataSurveiController::class, 'store']);
 Route::post('/data_survei/tambah_mitra', [
     DataSurveiController::class,
@@ -78,10 +82,10 @@ Route::post('/data_survei/penilaian', [DataSurveiController::class, 'simpan']);
 
 Route::get('/data_mitra/edit/{id}', [DataMitraController::class], 'edit');
 
-Route::get('/data_user', [DataUserController::class, 'index'])->name(
-    'data_user'
+
+Route::get('/detail_user/{id}', [DataUserController::class, 'detail'])->name(
+    'detail_user'
 );
-Route::get('/detail_user/{id}', [DataUserController::class, 'detail'])->name('detail_user');
 
 Route::get('/data_admin', [DataAdminController::class, 'index'])->name(
     'data_admin'
@@ -118,18 +122,17 @@ Route::get('/indoregion', [IndoregionController::class, 'indoregion'])->name(
 
 Route::post('/getkabupaten', [
     IndoregionController::class,
-    'getkabupaten'
+    'getkabupaten',
 ])->name('getkabupaten');
 
 Route::post('/getkecamatan', [
     IndoregionController::class,
-    'getkecamatan'
+    'getkecamatan',
 ])->name('getkecamatan');
 
-Route::post('/getdesa', [
-    IndoregionController::class,
+Route::post('/getdesa', [IndoregionController::class, 'getdesa'])->name(
     'getdesa'
-])->name('getdesa');
+);
 
 Route::post('/indoregion', [IndoRegionController::class, 'store']);
 
@@ -139,21 +142,33 @@ Route::get('/indoregion', [MitraController::class, 'indoregion'])->name(
     'indoregion'
 );
 
-Route::post('/getkabupaten', [
-    MitraController::class,
+Route::post('/getkabupaten', [MitraController::class, 'getkabupaten'])->name(
     'getkabupaten'
-])->name('getkabupaten');
+);
 
-Route::post('/getkecamatan', [
-    MitraController::class,
+Route::post('/getkecamatan', [MitraController::class, 'getkecamatan'])->name(
     'getkecamatan'
-])->name('getkecamatan');
+);
 
-Route::post('/getdesa', [
-    MitraController::class,
-    'getdesa'
-])->name('getdesa');
+Route::post('/getdesa', [MitraController::class, 'getdesa'])->name('getdesa');
 
-Route::post('/hapus/mitra_terhubung/{id}',[
-    DataSurveiController::class, 'hapus'
+Route::post('/hapus/mitra_terhubung/{id}', [
+    DataSurveiController::class,
+    'hapus',
 ]);
+
+Route::post('/user/delete/{id}', [
+    DataUserController::class,
+    'hapus',
+]);
+
+Route::post('/data_survei/delete/{id}', [
+    DataSurveiController::class,
+    'delete',
+]);
+
+Route::get('/data_user', [DataUserController::class, 'index'])->name(
+    'data_user'
+);
+Route::get('/data_user/tambah', [DataUserController::class, 'tambah']);
+Route::post('/data_user/tambah', [DataSurveiController::class, 'store']);

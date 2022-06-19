@@ -23,7 +23,7 @@
                 {{-- Begin Page Content --}}
                 <div class="container-fluid">
 
-                    <a href="/data_user/tambah" class="btn btn-primary mb-5">Buat User Baru</a>
+                    {{-- <a href="/data_survei/survei" class="btn btn-primary mb-5">Buat Survei / Sensus Baru</a> --}}
 
                     <table id="data_user">
                         <thead>
@@ -42,7 +42,9 @@
                                     <td><?= $i++ ?></td>
                                     <td>{{ $item->name }}</td>
                                     <td>
-                                        <form action="/user/delete/{{ $item->id }}" method="POST"
+                                        <a href="/detail_survei/{{ $item['id'] }}" class="btn btn-sm btn-primary"><i
+                                                class="fa fa-info"></i></a>
+                                        <form action="/data_survei/delete/{{ $item->id }}" method="POST"
                                             class="d-inline" onsubmit="return confirm('Yakin?')">
                                             @csrf
                                             <button class="btn btn-danger btn-sm">

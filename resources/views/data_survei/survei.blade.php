@@ -66,7 +66,7 @@
                                 </div>
                             </div>
                             <input type="hidden" name="status" id="status" value="status">
-                            <button type="submit" class="btn btn-primary mt-5">Submit</button>
+                            <button type="submit" class="btn btn-primary mt-5">Tambahkan</button>
                         </form>
                     </div>
 

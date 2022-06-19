@@ -156,4 +156,12 @@ class DataSurveiController extends Controller
 
         return redirect()->back();
     }
+
+    public function delete(Request $request, $id)
+    {
+        $survei =  Survei::find($id);
+        $survei->delete();
+
+        return redirect()->back();
+    }
 }
