@@ -2,7 +2,7 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
-        <img class="user" src="https://www.bps.go.id/website/fileMenu/logo.png;wafc244cc303b5aff3" height="50px"
+        <img class="user" src="https://www.bps.go.id/website/fileMenu/logo.png" height="50px"
             width="50px">
         {{-- <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>

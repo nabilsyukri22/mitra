@@ -8,7 +8,7 @@
 
 <body>
     <div class="loginBox">
-        <img class="user" src="https://www.bps.go.id/website/fileMenu/logo.png;wafc244cc303b5aff3"
+        <img class="user" src="https://www.bps.go.id/website/fileMenu/logo.png"
             height="100px" width="100px">
         <h3>Sign in here</h3>
         <form action="/login" method="post">
