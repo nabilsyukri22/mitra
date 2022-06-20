@@ -9,7 +9,8 @@ class DataUserController extends Controller
 {
     public function index()
     {
-        $user = User::all();
+        $user = User::where('isadmin', false)->get();
+        // $user = User::withTrashed()->get();
         return view('data_user.index', [
             'title' => 'User',
             'user' => $user,
