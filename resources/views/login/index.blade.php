@@ -40,7 +40,6 @@
             </div>
             <input type="submit" name="" value="Login">
         </form>
-        <a href="/register">Daftar</a>
     </div>
 </body>
 

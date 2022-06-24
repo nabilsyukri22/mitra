@@ -24,7 +24,7 @@
                 <div class="container-fluid">
 
                     {{-- Page Heading --}}
-                    <p>Hello {{ Auth::user()->name }}</p>
+                    <h3 class="mb-5">Selamat Datang {{ Auth::user()->name }} !</h3>
                     <div class="row">
                         <div class="col-sm-6 mb-3">
                             <div class="card">

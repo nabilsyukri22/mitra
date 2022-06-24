@@ -107,7 +107,9 @@
                                     <th scope="col">Beri Penilaian</th>
                                     <th scope="col">Nilai Kinerja</th>
                                 @endif
-                                <th scope="col">Hapus Mitra Terhubung</th>
+                                @if ($date < $survei->tgl_mulai)
+                                    <th scope="col">Hapus Mitra Terhubung</th>
+                                @endif
                             </tr>
                             @foreach ($mitra as $m)
                                 @php
@@ -131,15 +133,17 @@
                                             {{ $avg }}
                                         </td>
                                     @endif
-                                    <td scope="col">
-                                        <form action="/hapus/mitra_terhubung/{{ $mitraSurvei->id }}" method="POST"
-                                            class="d-inline" onsubmit="return confirm('Yakin?')">
-                                            @csrf
-                                            <button class="btn btn-danger btn-sm">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </td>
+                                    @if ($date < $survei->tgl_mulai)
+                                        <td scope="col">
+                                            <form action="/hapus/mitra_terhubung/{{ $mitraSurvei->id }}"
+                                                method="POST" class="d-inline" onsubmit="return confirm('Yakin?')">
+                                                @csrf
+                                                <button class="btn btn-danger btn-sm">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </table>

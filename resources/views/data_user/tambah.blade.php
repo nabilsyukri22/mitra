@@ -61,8 +61,8 @@
                     </form>  --}}
 
                     <div class="p-4 bg-white">
-                        <h4 class="mb-5">Tambah User</h4>
-                        <form action="/register" method="POST" enctype="multipart/form-data">
+                        {{--  <h4 class="mb-5">Tambah User</h4>  --}}
+                        <form onsubmit="return confirm('Yakin?')"action="/register" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             <div class="row mb-4 g-3 align-items-center">
