@@ -13,10 +13,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
 
     {!! ReCaptcha::htmlScriptTagJsApi() !!}
     <style>
-        input[type="date"]{
+        input[type="date"] {
             background-color: #5891ff;
             font-family: "Roboto Mono", monospace;
             color: #ffffff;
@@ -26,7 +28,11 @@
             border-radius: 5px;
         }
 
-        ::-webkit-calendar-picker-indicator{
+        .bgr{
+            background: #dee9ff;
+        }
+
+        ::-webkit-calendar-picker-indicator {
             background-color: #ffffff;
             cursor: pointer;
 
@@ -34,11 +40,11 @@
     </style>
 </head>
 
-<body class="text-center">
+<body class="bgr text-center">
     <div class="" style="display: flex; justify-content: center;">
         <div class="col-md-5">
             <main class="registration-form">
-                <h1 class="mb-3 mt-3 fw-normal">Silahkan Isi Data Diri Anda</h1>
+                {{--  <h1 class="mb-3 mt-3 fw-normal">Silahkan Isi Data Diri Anda</h1>  --}}
                 <form action="/mitra" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-icon">
@@ -47,9 +53,10 @@
 
                     {{-- 1 --}}
 
-                    <div class="form-group">
-                        <input type="text" name="nama" class="form-control item @error('nama') is-invalid @enderror"
-                            id="nama" required value="{{ old('nama') }}" placeholder="Nama">
+                    <div class="form-group form-floating">
+                        <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror"
+                            id="nama" required value="{{ old('nama') }}" placeholder="nama">
+                            <label for="nama">Nama</label>
                         @error('nama')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -59,9 +66,10 @@
 
                     {{-- 2 --}}
 
-                    <div class="form-group">
-                        <input type="text" name="nik" class="form-control item @error('nik') is-invalid @enderror"
+                    <div class="form-group form-floating">
+                        <input type="text" name="nik" class="form-control @error('nik') is-invalid @enderror"
                             id="nik" required value="{{ old('nik') }}" placeholder="NIK">
+                            <label for="nik">NIK</label>
                         @error('nik')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -71,11 +79,12 @@
 
                     {{-- 3 --}}
 
-                    <div class="form-group">
+                    <div class="form-group form-floating">
 
                         <input type="text" name="pekerjaan"
-                            class="form-control item @error('pekerjaan') is-invalid @enderror" id="pekerjaan" required
+                            class="form-control @error('pekerjaan') is-invalid @enderror" id="pekerjaan" required
                             value="{{ old('pekerjaan') }}" placeholder="Pekerjaan">
+                            <label for="pekerjaan">Pekerjaan</label>
                         @error('pekerjaan')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -85,10 +94,11 @@
 
                     {{-- 4 --}}
 
-                    <div class="form-group">
+                    <div class="form-group form-floating">
 
-                        <input type="text" name="nowa" class="form-control item @error('nowa') is-invalid @enderror"
+                        <input type="text" name="nowa" class="form-control @error('nowa') is-invalid @enderror"
                             id="nowa" required value="{{ old('nowa') }}" placeholder="Nomor WA">
+                            <label for="nowa">Nomor WA</label>
                         @error('nowa')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -98,10 +108,11 @@
 
                     {{-- 5 --}}
 
-                    <div class="form-group">
+                    <div class="form-group form-floating">
 
-                        <input type="text" name="email" class="form-control item @error('email') is-invalid @enderror"
+                        <input type="text" name="email" class="form-control @error('email') is-invalid @enderror"
                             id="email" required value="{{ old('email') }}" placeholder="Email">
+                            <label for="email">Email</label>
                         @error('email')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -111,11 +122,12 @@
 
                     {{-- 6 --}}
 
-                    <div class="form-group">
+                    <div class="form-group form-floating">
 
                         <input type="text" name="tempat_lahir"
-                            class="form-control item @error('tempat_lahir') is-invalid @enderror" id="tempat_lahir"
-                            required value="{{ old('tempat_lahir') }}" placeholder="Tempat Lahir">
+                            class="form-control @error('tempat_lahir') is-invalid @enderror" id="tempat_lahir" required
+                            value="{{ old('tempat_lahir') }}" placeholder="Tempat Lahir">
+                            <label for="tempat_lahir">Tempat Lahir</label>
                         @error('tempat_lahir')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -177,10 +189,11 @@
 
                     {{-- 12 --}}
 
-                    <div class="form-group">
-                        <input type="text" name="domisili"
-                            class="form-control item @error('domisili') is-invalid @enderror" id="domisili" required
-                            value="{{ old('domisili') }}" placeholder="Alamat Lengkap">
+                    <div class="form-group form-floating">
+                        <textarea type="text" name="domisili"
+                            class="form-control @error('domisili') is-invalid @enderror" id="domisili" required
+                            value="{{ old('domisili') }}" placeholder="Alamat Lengkap"></textarea>
+                            <label for="domisili">Alamat Lengkap</label>
                         @error('domisili')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -190,7 +203,8 @@
 
                     {{-- ----------------------------- --}}
 
-                    <br><hr><br>
+                    <br>
+                    <hr><br>
 
                     {{-- 13 --}}
 
@@ -287,8 +301,8 @@
                     <div class="row mb-3">
                         <label for="pasfoto" class="col-sm-2 col-form-label">Pas Foto</label>
 
-                        <input class="form-control @error('pasfoto') is-invalid @enderror" type="file" id="pasfoto"
-                            name="pasfoto" required>
+                        <input class="form-control @error('pasfoto') is-invalid @enderror" type="file"
+                            id="pasfoto" name="pasfoto" required>
                         @error('pasfoto')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -299,8 +313,8 @@
                     <div class="row mb-3">
                         <label for="ktp" class="col-sm-2 col-form-label">KTP</label>
 
-                        <input class="form-control @error('ktp') is-invalid @enderror" type="file" id="ktp" name="ktp"
-                            required>
+                        <input class="form-control @error('ktp') is-invalid @enderror" type="file" id="ktp"
+                            name="ktp" required>
                         @error('ktp')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -312,8 +326,8 @@
                     <div class="row mb-3">
                         <label for="ijazah" class="col-sm-2 col-form-label">Ijazah</label>
 
-                        <input class="form-control @error('ijazah') is-invalid @enderror" type="file" id="ijazah"
-                            name="ijazah" required>
+                        <input class="form-control @error('ijazah') is-invalid @enderror" type="file"
+                            id="ijazah" name="ijazah" required>
                         @error('ijazah')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -418,6 +432,15 @@
                     })
                 })
             })
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js">
+    </script>
+
+    <script type="text/javascript">
+        $(function() {
+            $('#CalendarDateTime').datetimepicker();
         });
     </script>
 </body>

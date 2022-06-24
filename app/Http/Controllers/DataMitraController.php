@@ -20,8 +20,10 @@ class DataMitraController extends Controller
     public function detail($id)
     {
         $mitra = Mitra::whereId($id)->first();
+        $umur = (date('Y') - date('Y',strtotime($mitra->tanggal_lahir)));
         return view('data_mitra.detail', [
             'mitra' => $mitra,
+            'umur' => $umur,
         ]);
     }
 

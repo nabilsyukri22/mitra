@@ -54,7 +54,7 @@
                             </tr>
                             <tr>
                                 <th scope="row">Umur</th>
-                                <td>{{ $mitra->umur }}</td>
+                                <td>{{ $umur }}</td>
                             </tr>
                             <tr>
                                 <th scope="col">Perkawinan</th>
