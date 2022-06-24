@@ -61,12 +61,14 @@ class DataSurveiController extends Controller
     {
         $survei = Survei::with(['mitras'])->find($id);
         $mitraa = Mitra::all();
+        $date = date('Y-m-d');
         return view('data_survei.detail', [
             'survei' => $survei,
             'jumlahmitra' => count($survei->mitras),
             'mitra' => $survei->mitras,
             'mitraa' => $mitraa,
             'status_survei' => StatusSurvei::all(),
+            'date' => $date
         ]);
     }
 

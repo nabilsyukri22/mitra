@@ -45,24 +45,14 @@
                             </tr>
                             <tr>
                                 <th scope="col">Status</th>
-                                {{-- <td scope="col">
-                                    <select class="form-select" name="status" id="status">
-                                      <option value="Belum Dimulai">Belum Dimulai</option>
-                                      <option value="Sedang Berlangsung">Sedang Berlangsung</option>
-                                      <option value="Selesai">Selesai</option>
-                                    </select>
-                                </td> --}}
                                 <td scope="col">
-                                    @php
-                                        $date = date('Y-m-d');
-                                        if ($date < $survei->tgl_mulai) {
-                                            echo 'Belum Dimulai';
-                                        } elseif ($date >= $survei->tgl_mulai && $date <= $survei->tgl_akhir) {
-                                            echo 'Sedang Berlangsung';
-                                        } else {
-                                            echo 'Telah Selesai';
-                                        }
-                                    @endphp
+                                    @if ($date < $survei->tgl_mulai)
+                                        <p>Belum Dimulai</p>
+                                    @elseif ($date >= $survei->tgl_mulai && $date <= $survei->tgl_akhir)
+                                        <p>Sedang Berlangsung</p>
+                                    @else
+                                        <p>Telah Selesai</p>
+                                    @endif
                                 </td>
                             </tr>
 
