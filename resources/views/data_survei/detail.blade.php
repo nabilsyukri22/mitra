@@ -67,34 +67,28 @@
 
                         {{-- ------------------ --}}
 
-                        @php
-                            $date = date('Y-m-d');
-                            if ($date < $survei->tgl_mulai && $jumlahmitra < $survei->kebutuhan) {
-                                echo '<button type="button" class="btn btn-primary" data-toggle="modal"
+                        @if ($date < $survei->tgl_mulai && $jumlahmitra < $survei->kebutuhan)
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#exampleModalCenter">Tambah
                                 Mitra</a>
-                                </button>';
-                            } else {
-                                echo '<button type="button" class="btn btn-primary" data-toggle="modal"
+                            </button>
+                        @else
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#exampleModalCenter" disabled>Tambah Mitra</a>
-                                </button>';
-                            }
-                        @endphp
+                            </button>
+                        @endif
 
                         {{-- ------------------ --}}
-
-                        {{-- <button type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#exampleModalCenter">Tambah
-                            Mitra</a>
-                        </button> --}}
                     </div>
 
                     <div class="p-4 m-3 border bg-white">
                         <table class="table table-striped table-hover">
                             <tr>
                                 <th scope="col">Nama Mitra</th>
-                                @if ($date > $survei->tgl_akhir)
+                                @if ($date >= $survei->tgl_mulai && $date <= $survei->tgl_akhir)
                                     <th scope="col">Beri Penilaian</th>
+                                @endif
+                                @if ($date > $survei->mulai)
                                     <th scope="col">Nilai Kinerja</th>
                                 @endif
                                 @if ($date < $survei->tgl_mulai)
@@ -114,11 +108,13 @@
                                     <td scope="col">
                                         {{ $m->nama }}
                                     </td>
-                                    @if ($date > $survei->tgl_akhir)
+                                    @if ($date >= $survei->tgl_mulai && $date <= $survei->tgl_akhir)
                                         <td scope="col">
                                             <a href="/data_survei/penilaian/{{ $mitraSurvei->id }}"
                                                 class="btn btn-sm btn-primary"><i class="fa fa-info"></i></a>
                                         </td>
+                                    @endif
+                                    @if ($date > $survei->tgl_mulai)
                                         <td scope="col">
                                             {{ $avg }}
                                         </td>
@@ -139,22 +135,23 @@
                         </table>
                     </div>
                     {{-- <a href="{{ route('') }}"></a> --}}
-
-                    <div class="p-4 m-3 border bg-white">
-                        <form action="/data_survei/twilio" method="POST">
-                            @csrf
-                            <input type="hidden" id="surveiId" name="surveiId" value="{{ $survei->id }}" />
-                            <div class="row mb-4 g-3 align-items-center">
-                                <div class="col-2">
-                                    <label for="nama" class="col-form-label">Pesan</label>
+                    @if ($date < $survei->tgl_mulai)
+                        <div class="p-4 m-3 border bg-white">
+                            <form action="/data_survei/twilio" method="POST">
+                                @csrf
+                                <input type="hidden" id="surveiId" name="surveiId" value="{{ $survei->id }}" />
+                                <div class="row mb-4 g-3 align-items-center">
+                                    <div class="col-2">
+                                        <label for="nama" class="col-form-label">Pesan</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <textarea id="msg" name="msg" class="form-control"></textarea>
+                                    </div>
                                 </div>
-                                <div class="col-8">
-                                    <textarea id="msg" name="msg" class="form-control"></textarea>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Kirim</button>
-                        </form>
-                    </div>
+                                <button type="submit" class="btn btn-primary">Kirim</button>
+                            </form>
+                        </div>
+                    @endif
 
                 </div>
             </div>
