@@ -88,7 +88,7 @@
                                 @if ($date >= $survei->tgl_mulai && $date <= $survei->tgl_akhir)
                                     <th scope="col">Beri Penilaian</th>
                                 @endif
-                                @if ($date > $survei->mulai)
+                                @if ($date > $survei->tgl_mulai)
                                     <th scope="col">Nilai Kinerja</th>
                                 @endif
                                 @if ($date < $survei->tgl_mulai)

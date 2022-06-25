@@ -25,7 +25,7 @@
 
                     {{-- Page Heading --}}
 
-                    <h4 class="ml-3">Detail</h4>
+                    {{-- <h4 class="ml-3">Detail</h4> --}}
                     <div class="p-4 m-3 border bg-white">
                         <table class="table table-striped table-hover">
                             <tr>
@@ -110,15 +110,18 @@
                             </tr>
                             <tr>
                                 <th scope="row">Pas Foto</th>
-                                <td scope="col"><img src="{{ asset('storage/' . $mitra->pasfoto) }}" alt=""></td>
+                                <td scope="col"><img class="img-fluid" width="450" height="350"
+                                        src="{{ asset('storage/' . $mitra->pasfoto) }}" alt=""></td>
                             </tr>
                             <tr>
                                 <th scope="col">KTP</th>
-                                <td scope="col"><img src="{{ asset('storage/' . $mitra->ktp) }}" alt=""></td>
+                                <td scope="col"><img src="{{ asset('storage/' . $mitra->ktp) }}" alt="">
+                                </td>
                             </tr>
                             <tr>
                                 <th scope="row">Ijazah</th>
-                                <td scope="col"><img src="{{ asset('storage/' . $mitra->ijazah) }}" alt=""></td>
+                                <td scope="col"><img src="{{ asset('storage/' . $mitra->ijazah) }}"
+                                        alt=""></td>
                             </tr>
                         </table>
 
