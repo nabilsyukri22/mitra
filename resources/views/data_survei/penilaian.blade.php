@@ -42,7 +42,8 @@
                                     @php
                                         $i = 1;
                                     @endphp
-                                    <input name="id_mitra_surveis" type="text" hidden value="{{ $id_mitra_surveis }}">
+                                    <input name="id_mitra_surveis" type="text" hidden
+                                        value="{{ $id_mitra_surveis }}">
                                     @foreach ($kriteria as $item)
                                         <tr>
                                             <td>{{ $i++ }}</td>
@@ -50,27 +51,32 @@
                                             <td scope="col">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio"
-                                                        name="kriteria_{{ $item->id }}" id="inlineRadio1" value="1">
+                                                        name="kriteria_{{ $item->id }}" id="inlineRadio1"
+                                                        value="1">
                                                     <label class="form-check-label" for="inlineRadio1">1</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio"
-                                                        name="kriteria_{{ $item->id }}" id="inlineRadio2" value="2">
+                                                        name="kriteria_{{ $item->id }}" id="inlineRadio2"
+                                                        value="2">
                                                     <label class="form-check-label" for="inlineRadio2">2</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio"
-                                                        name="kriteria_{{ $item->id }}" id="inlineRadio2" value="3">
+                                                        name="kriteria_{{ $item->id }}" id="inlineRadio2"
+                                                        value="3">
                                                     <label class="form-check-label" for="inlineRadio2">3</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio"
-                                                        name="kriteria_{{ $item->id }}" id="inlineRadio2" value="4">
+                                                        name="kriteria_{{ $item->id }}" id="inlineRadio2"
+                                                        value="4">
                                                     <label class="form-check-label" for="inlineRadio2">4</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio"
-                                                        name="kriteria_{{ $item->id }}" id="inlineRadio2" value="5">
+                                                        name="kriteria_{{ $item->id }}" id="inlineRadio2"
+                                                        value="5">
                                                     <label class="form-check-label" for="inlineRadio2">5</label>
                                                 </div>
                                             </td>

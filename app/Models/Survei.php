@@ -14,4 +14,8 @@ class Survei extends Model
     public function mitras(){
         return $this->belongsToMany(Mitra::class, 'mitra_surveis', 'id_survei', 'id_mitra'); 
     }
+
+    public function user(){
+        return $this->hasOne(User::class, 'id_user');
+    }
 }

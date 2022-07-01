@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSurveisTable extends Migration
+class AddIdUserColumnToSurvei extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateSurveisTable extends Migration
      */
     public function up()
     {
-        Schema::create('surveis', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->string('nama');
-            $table->integer('kebutuhan');
-            $table->string('status');
+        Schema::table('surveis', function (Blueprint $table) {
+            $table->bigInteger('id_user')->nullable();
         });
     }
 
@@ -29,6 +25,8 @@ class CreateSurveisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('surveis');
+        Schema::table('survei', function (Blueprint $table) {
+            $table->dropColumn('id_user');
+        });
     }
 }

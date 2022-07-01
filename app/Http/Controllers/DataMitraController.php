@@ -27,11 +27,6 @@ class DataMitraController extends Controller
         ]);
     }
 
-    public function edit()
-    {
-        return 'halo';
-    }
-
     public function delete($id)
     {
         DB::table('mitras')

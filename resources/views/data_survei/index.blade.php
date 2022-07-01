@@ -25,7 +25,7 @@
 
                     {{-- Page Heading --}}
 
-                    <a href="/data_survei/tambah" class="btn btn-primary mb-5">Buat Survei / Sensus Baru</a>
+                    <a href="/data_survei/tambah" class="btn btn-primary mb-5">Buat Survei Baru</a>
 
                     <table id="data_survei">
                         <thead>

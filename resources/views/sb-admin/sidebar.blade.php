@@ -2,8 +2,7 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
-        <img class="user" src="{{ url('/img/bps.png') }}" height="50px"
-            width="50px">
+        <img class="user" src="{{ url('/img/bps.png') }}" height="50px" width="50px">
         {{-- <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
@@ -55,7 +54,7 @@
 
     <hr class="sidebar-divider">
     <div class="sidebar-heading">
-        Sensus / Survei
+        Survei
     </div>
     <li class="nav-item">
         <a class="nav-link" href="/data_survei">

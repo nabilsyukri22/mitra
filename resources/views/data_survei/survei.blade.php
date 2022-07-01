@@ -25,14 +25,17 @@
 
                     {{-- Page Heading --}}
 
+                    {{--  <input name="id_user" type="text" hidden value="{{ $id_user }}">  --}}
+
                     <div class="p-4 bg-white">
-                        {{--  <h4 class="mb-5">Tambah Survei / Sensus</h4>  --}}
-                        <form onsubmit="return confirm('Yakin?')" action="/data_survei/store" method="POST" enctype="multipart/form-data">
+                        <form onsubmit="return confirm('Yakin?')" action="/data_survei/store" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
+
 
                             <div class="row mb-4 g-3 align-items-center">
                                 <div class="col-2">
-                                    <label for="nama" class="col-form-label">Nama Survei/Sensus</label>
+                                    <label for="nama" class="col-form-label">Nama Survei</label>
                                 </div>
                                 <div class="col-4">
                                     <input type="text" id="nama" name="nama" class="form-control">

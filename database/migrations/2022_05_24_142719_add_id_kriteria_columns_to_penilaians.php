@@ -14,7 +14,7 @@ class AddIdKriteriaColumnsToPenilaians extends Migration
     public function up()
     {
         Schema::table('penilaians', function (Blueprint $table) {
-            $table->bigInteger('id_kriteria')->nullable();;
+            $table->bigInteger('id_kriteria')->nullable();
         });
     }
 

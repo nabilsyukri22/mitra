@@ -39,10 +39,10 @@
                         <div class="col-sm-6 mb-3">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Jumlah Survei/Sensus : {{ $survei }}</h5>
+                                    <h5 class="card-title">Jumlah Survei : {{ $survei }}</h5>
                                     {{-- <p class="card-text">With supporting text below as a natural lead-in to additional
                                         content.</p> --}}
-                                    <a href="/data_survei" class="btn btn-primary">Data Survei/Sensus</a>
+                                    <a href="/data_survei" class="btn btn-primary">Data Survei</a>
                                 </div>
                             </div>
                         </div>

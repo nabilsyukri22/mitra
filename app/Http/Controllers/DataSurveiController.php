@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Mitra;
 use App\Models\Survei;
+use Twilio\Rest\Client;
 use App\Models\Kriteria;
-use App\Models\MitraSurvei;
 use App\Models\Penilaian;
+use App\Models\MitraSurvei;
 use App\Models\StatusSurvei;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Twilio\Rest\Client;
 
 class DataSurveiController extends Controller
 {
@@ -26,6 +28,7 @@ class DataSurveiController extends Controller
     public function store(Request $request)
     {
         // dd($request);
+        
         $validatedData = $request->validate([
             'nama' => 'required|max:255',
             'kebutuhan' => 'required|max:255',
@@ -34,12 +37,22 @@ class DataSurveiController extends Controller
             'status'    => 'required',
         ]);
 
-        Survei::create($validatedData);
+        Survei::create(array_merge($validatedData, [
+            'id_user' => Auth::user()->id
+        ]));
 
         return redirect('/data_survei')->with(
             'success',
             'Membuat Survei Berhasil'
         );
+    }
+
+    public function survei()
+    {
+        // $id_user = User::all();
+        return view('data_survei.survei', [
+            'title' => 'Survei'
+        ]);
     }
 
     public function tambah_mitra(Request $request)
@@ -69,26 +82,6 @@ class DataSurveiController extends Controller
             'mitraa' => $mitraa,
             'status_survei' => StatusSurvei::all(),
             'date' => $date
-        ]);
-    }
-
-    // public function create(Request $request)
-    // {
-    //     $validatedData = $request->validate([
-    //         'nama' => 'required|max:255',
-    //         'kebutuhan' => 'required',
-    //     ]);
-
-    //     Survei::create($validatedData);
-    //     // $request->session()->flash('success', 'Registrasi Berhasil');
-    //     dd($validatedData);
-    //     // return redirect('/blank')->with('success', 'Pendaftaran Berhasil');
-    // }
-
-    public function survei()
-    {
-        return view('data_survei.survei', [
-            'title' => 'Survei',
         ]);
     }
 
