@@ -115,12 +115,12 @@
                             </tr>
                             <tr>
                                 <th scope="col">KTP</th>
-                                <td scope="col"><img src="{{ asset('storage/' . $mitra->ktp) }}" alt="">
+                                <td scope="col"><img class="img-fluid" width="450" height="350" src="{{ asset('storage/' . $mitra->ktp) }}" alt="">
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Ijazah</th>
-                                <td scope="col"><img src="{{ asset('storage/' . $mitra->ijazah) }}"
+                                <td scope="col"><img class="img-fluid" width="450" height="350" src="{{ asset('storage/' . $mitra->ijazah) }}"
                                         alt=""></td>
                             </tr>
                         </table>

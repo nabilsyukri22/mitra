@@ -23,16 +23,10 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            // dd($request->session()->regenerate());
-            $request->session()->regenerate();
-            // if (auth()->user()->isadmin == true){
-            //     return redirect()->route('admin');
-            // } else {
-            //     return redirect('/dashboard');
-            // }
+            // $request->session()->regenerate();
             return redirect('/dashboard');
         }
-        return back()->with('loginError', 'Login Gagal');
+        return redirect('/login')->with('flash_message_error', 'Login Gagal');
     }
 
     public function logout()

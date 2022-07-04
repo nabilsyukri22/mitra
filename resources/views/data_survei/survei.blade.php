@@ -25,7 +25,7 @@
 
                     {{-- Page Heading --}}
 
-                    {{--  <input name="id_user" type="text" hidden value="{{ $id_user }}">  --}}
+                    {{-- <input name="id_user" type="text" hidden value="{{ $id_user }}"> --}}
 
                     <div class="p-4 bg-white">
                         <form onsubmit="return confirm('Yakin?')" action="/data_survei/store" method="POST"
@@ -38,7 +38,7 @@
                                     <label for="nama" class="col-form-label">Nama Survei</label>
                                 </div>
                                 <div class="col-4">
-                                    <input type="text" id="nama" name="nama" class="form-control">
+                                    <input required type="text" id="nama" name="nama" class="form-control">
                                 </div>
                             </div>
 
@@ -47,16 +47,16 @@
                                     <label for="kebutuhan" class="col-form-label">Kebutuhan</label>
                                 </div>
                                 <div class="col-4">
-                                    <input type="number" id="kebutuhan" name="kebutuhan" class="form-control">
+                                    <input required type="number" id="kebutuhan" name="kebutuhan" class="form-control">
                                 </div>
                             </div>
                             <br>
                             <div class="row g-3 align-items-center">
                                 <div class="col-2">
-                                    <label for="tgl_mulai" class="col-form-label">Tanggal Mulai</label>
+                                    <label required for="tgl_mulai" class="col-form-label">Tanggal Mulai</label>
                                 </div>
                                 <div class="col-4">
-                                    <input type="date" name="tgl_mulai" id="tgl_mulai" class="form-control">
+                                    <input required type="date" name="tgl_mulai" id="tgl_mulai" class="form-control">
                                 </div>
                             </div>
                             <br>
@@ -65,7 +65,7 @@
                                     <label for="tgl_akhir" class="col-form-label">Tanggal Berakhir</label>
                                 </div>
                                 <div class="col-4">
-                                    <input type="date" name="tgl_akhir" id="tgl_akhir" class="form-control">
+                                    <input required type="date" name="tgl_akhir" id="tgl_akhir" class="form-control">
                                 </div>
                             </div>
                             <input type="hidden" name="status" id="status" value="status">

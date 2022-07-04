@@ -73,14 +73,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/data_user/tambah', [DataUserController::class, 'tambah']);
         Route::post('/data_user/tambah', [DataSurveiController::class, 'store']);
     });
+
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index']);
 
     // Data Mitra
-    Route::get('/data_mitra', [DataMitraController::class, 'index'])
-        ->name('data_mitra');
-    Route::get('/detail_mitra/{id}', [DataMitraController::class, 'detail',])
-        ->name('detail_mitra');
+    Route::get('/data_mitra', [DataMitraController::class, 'index'])->name('data_mitra');
+    Route::get('/detail_mitra/{id}', [DataMitraController::class, 'detail',])->name('detail_mitra');
     Route::post('data_mitra/delete/{id}', [DataMitraController::class, 'delete',]);
 
     // Data Survei
